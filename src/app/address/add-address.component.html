@@ -1,0 +1,45 @@
+<ActionBar>
+
+    <GridLayout columns="auto, *, auto">
+        <Label col="0" class="title" text="My Addresses"></Label>
+        <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+        [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+        <Label col="2" [text]="3" class="cart-item-no"
+        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+   </GridLayout>
+
+</ActionBar>
+
+<StackLayout class="my-account">
+    <FlexboxLayout>
+        <StackLayout class="form">
+
+            <TextField hint="Pin Code*" [(ngModel)]="address.postalCode" class="input input-border"
+              ></TextField>
+            <TextField hint="House No./ Building Name*" [(ngModel)]="address.addressLine1" class="input input-border"
+              ></TextField>
+            <TextField hint="Area / Road Name / Colony*" [(ngModel)]="address.addressLine2" class="input input-border"
+              ></TextField>
+            <TextField hint="City*" [(ngModel)]="address.city" class="input input-border"></TextField>
+            <TextField hint="State*" [(ngModel)]="address.state" class="input input-border"></TextField>
+            <TextField hint="LandMark (optional)" [(ngModel)]="address.landMark" class="input input-border"></TextField>
+
+            <StackLayout class="hr"></StackLayout>
+
+            <TextField hint="Full Name*" [(ngModel)]="address.addressLine2" class="input input-border"
+              ></TextField>
+            <TextField hint="Mobile Number*" [(ngModel)]="address.mobileNumber" class="input input-border"></TextField>
+            <TextField hint="Alternate Mobile Number (optional)" [(ngModel)]="address.alternateMobileNumber" class="input input-border">
+            </TextField>
+
+            <Button text="Save" class="btn btn-primary" (tap)="save()"></Button>
+        </StackLayout>
+    </FlexboxLayout>
+
+
+
+
+
+</StackLayout>
+

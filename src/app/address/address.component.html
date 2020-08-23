@@ -1,0 +1,40 @@
+<ActionBar>
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+        <Label col="0" class="title" text="My Addresses"></Label>
+        <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+        [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+        <Label col="2" [text]="3" class="cart-item-no"
+        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+   </GridLayout>
+
+</ActionBar>
+
+<StackLayout class="my-account">
+
+    <StackLayout class="add-address">
+        <Label class="link" text="+ Add a new address" [nsRouterLink]="['/address/addAddress']" pageTransition="slide"></Label>
+    </StackLayout>
+
+   <!--  <StackLayout class="hr"></StackLayout> -->
+
+
+    <ListView  [items]="addressList" class="o-item" separatorColor="blue">
+        <ng-template let-item="item">
+            <StackLayout height= "100" class="data-container">
+                <Label text={{item.fullName}} class="o-solid"></Label>
+                <Label text='{{item.addressLine1}}, {{item.addressLine2}}, {{item.city}} - {{item.postalCode}}'
+                class="o-regular"> </Label>
+                <Label text={{item.mobileNumber}} class="p-mobile"></Label>
+             </StackLayout>
+        </ng-template>
+    </ListView >
+
+</StackLayout>
+

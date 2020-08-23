@@ -1,0 +1,60 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+         <Label col="0" class="title" text="Shoppers Mart"></Label>
+         <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+         <Label col="2" [text]="cartLength" class="cart-item-no"
+         [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+    </GridLayout>
+
+    <!--  <GridLayout  columns="auto,auto, 4*, *">
+        <Label col="0" text="My Orders"></Label>
+        <Label col="3" text="&#xf217;" class="nt-icon fas"></Label>
+        <Label col="3" [text]="cartLength" class="cart-item-no"></Label>
+    </GridLayout> -->
+</ActionBar>
+
+<StackLayout>
+    <StackLayout>
+        <SearchBar hint="Search item here ..." textFieldHintColor="whitesmoke"
+                [text]="searchPhrase" (textChange)="onTextChanged($event)"
+                (clear)="onClear($event)" (submit)="onSubmit($event)">
+        </SearchBar>
+        <StackLayout row="1" class="hr "></StackLayout>
+    </StackLayout>
+
+
+    <GridLayout rows="*">
+        <ListView  [items]="serResult">
+            <ng-template let-item="item" >
+                <GridLayout rows="auto,*" columns="auto,25, *">
+                    <Image row="0" col="0" [src]="item.product.imageUrl" class="p-image" ></Image>
+
+                    <GridLayout col="2" rows="auto,auto,*" columns="auto,*,auto,auto,auto">
+                        <Label row="0" col="0" [text]="item.product.name" class="o-regular"></Label>
+                        <Label row="1" col="0" [text]="item.product.weight"></Label>
+                        <Label row="2" col="0" text="Rs. {{item.product.price}}" class="o-solid"></Label>
+                        <Button class="add-item-btn" *ngIf="item.quantity==0" row="2" col="3" text="Add" (tap)="addToCart(item)"></Button>
+                        <Button class="add-unit-btn" *ngIf="item.quantity>0" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
+                        <Label *ngIf="item.quantity>0" row="2" col="3" [text]="item.quantity"></Label>
+                        <Button class="add-unit-btn" *ngIf="item.quantity>0" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
+                    </GridLayout>
+                </GridLayout>
+            </ng-template>
+        </ListView >
+        </GridLayout>
+
+</StackLayout>

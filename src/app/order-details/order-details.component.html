@@ -1,0 +1,112 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+   <!--  <GridLayout  columns="auto,auto, 4*, *">
+        <Label col="0" text="My Orders"></Label>
+        <Label col="2" text="&#xf002;" class="nt-icon fas"></Label>
+        <Label col="3" text="&#xf217;" class="nt-icon fas"></Label>
+    </GridLayout> -->
+
+    <GridLayout columns="auto, *, auto">
+        <Label col="0" class="title" text="My Orders"></Label>
+        <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+        [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+        <Label col="2" [text]="3" class="cart-item-no"
+        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+   </GridLayout>
+
+</ActionBar>
+
+
+<GridLayout sdkExampleTitle sdkToggleNavButton>
+    <!-- >> tab-view-styling-ng-html -->
+    <TabView selectedTabTextColor="skyblue"
+             tabTextColor="black"
+			 tabBackgroundColor="white"
+             tabTextFontSize="20"
+             selectedTabFontWeight="900"
+			 androidSelectedTabHighlightColor="skyblue">
+
+        <StackLayout *tabItem="{title: 'SUMMARY', textTransform: 'UPPERCASE'}" class="tab1">
+
+            <Label text="DELIVERY SLOT" textWrap="true" class="m-15 h2 text-left" class="summary-heading"></Label>
+            <StackLayout class="data-container">
+            <Label text='Thu 30 Apr 2020' class="o-solid"></Label>
+            <Label text='02:30 PM - 04:30 PM'class="o-regular"> </Label>
+            <Label text='Order status: {{order.orderStatus}}' class="o-regular"> </Label>
+            </StackLayout>
+
+            <Label text="DELIVERY ADDRESS" textWrap="true" class="m-15 h2 text-left" class="summary-heading"></Label>
+            <StackLayout class="data-container">
+            <Label text={{deliveryAddress.fullName}} class="o-solid"></Label>
+            <Label text='{{deliveryAddress.addressLine1}}, {{deliveryAddress.addressLine2}}, {{deliveryAddress.city}} - {{deliveryAddress.postalCode}}'
+            class="o-regular"> </Label>
+            <Label text='&#xf095;  {{deliveryAddress.mobileNumber}}' class="nt-icon fas p-mobile"></Label>
+            </StackLayout>
+
+            <Label text="PAYMENT DETAILS" class="m-15 h2 text-left" class="summary-heading"></Label>
+            <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="auto, *" class="data-container">
+                <Label row="0" col="0" text='Order Number:' class="text-left o-regular"></Label>
+                <Label row="0" col="1" text={{order.orderId}} class="text-right o-regular"></Label>
+
+                <Label row="1" col="0" text='Invoice Number:' class="text-left o-regular"></Label>
+                <Label row="1" col="1" text={{order.payment.invoiceNumber}} class="text-right o-regular"></Label>
+
+                <Label row="2" col="0" text='Payment Mode:' class="text-left o-regular"></Label>
+                <Label row="2" col="1" text={{order.payment.paymentOption}} class="text-right  o-regular"></Label>
+
+                <Label row="3" col="0" text='Order Items:' class="text-left o-regular"></Label>
+                <Label row="3" col="1" text={{order.noOfItmes}} class="text-right  o-regular"></Label>
+
+                <Label row="4" col="0" text='Sub Total:' class="text-left o-regular"></Label>
+                <Label row="4" col="1" text={{order.payment.subTotal}} class="text-right  o-regular"></Label>
+
+                <Label row="5" col="0" text='Delivery Charges:' class="text-left o-regular"></Label>
+                <Label row="5" col="1" text={{order.payment.deliveryCharge}} class="text-right  o-regular"></Label>
+
+                <Label row="6" col="0" text='Credit From Wallet:' class="text-left o-regular"></Label>
+                <Label row="6" col="1" text={{order.payment.walletCredit}} class="text-right  o-regular"></Label>
+
+                <Label row="7" col="0" text='Total:' class="text-left o-regular"></Label>
+                <Label row="7" col="1" text={{order.payment.total}} class="text-right o-regular" color="skyblue"></Label>
+
+            </GridLayout>
+        </StackLayout>
+
+
+        <StackLayout *tabItem="{title: 'ITEMS', textTransform: 'UPPERCASE'}">
+            <ListView  [items]="order.items">
+                <ng-template let-item="item" >
+                    <GridLayout rows="auto,*" columns="auto,25, *">
+                        <Image row="0" col="0" [src]="item.imageUrl" class="p-image" ></Image>
+
+                        <GridLayout col="2" rows="auto,auto,*" columns="*, auto">
+                            <Label row="0" [text]="item.name" class="o-regular"></Label>
+                            <Label row="1" [text]="item.weight"></Label>
+                            <Label row="2" text="Rs. {{item.price}}" class="o-solid"></Label>
+
+                            <Label row="1" col="1" text="Quantity: {{item.quantity}}" class="o-regular"></Label>
+                            <Label row="2" col="1" text="Rs. {{item.price}} x {{item.quantity}}" class="o-solid"></Label>
+                        </GridLayout>
+                    </GridLayout>
+
+                </ng-template>
+            </ListView >
+        </StackLayout>
+
+    </TabView>
+
+</GridLayout>

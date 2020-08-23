@@ -1,0 +1,69 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Welcome!!!" style="font-size:20"></Label>
+</ActionBar>
+
+<GridLayout sdkExampleTitle sdkToggleNavButton>
+    <!-- >> tab-view-styling-ng-html -->
+    <TabView selectedTabTextColor="skyblue"
+             tabTextColor="black"
+			 tabBackgroundColor="white"
+             tabTextFontSize="22"
+             androidSelectedTabHighlightColor="skyblue"
+             selectedIndex="{{selectedTabIndex}}">
+
+        <StackLayout *tabItem="{title: 'LOGIN', textTransform: 'UPPERCASE'}"  class="tab1">
+            <FlexboxLayout>
+            <StackLayout class="form" [class.dark]="!isLoggingIn">
+                <Image src="~/images/logo.png"></Image>
+
+                <TextField hint="Mobile Number" keyboardType="email"
+                    autocorrect="false" autocapitalizationType="none"
+                    [(ngModel)]="user.mobileNumber" class="input input-border">
+                </TextField>
+
+                <TextField hint="Password" secure="true" [(ngModel)]="user.password"
+                    class="input input-border"></TextField>
+
+                <Button text="Login" class="btn btn-primary" (tap)="login()"></Button>
+            </StackLayout>
+        </FlexboxLayout>
+        </StackLayout>
+
+
+        <StackLayout *tabItem="{title: 'SignUP', textTransform: 'UPPERCASE'}" class="tab2">
+        <FlexboxLayout>
+            <StackLayout class="form" [class.dark]="!isLoggingIn">
+                <Image src="~/images/logo.png"></Image>
+
+                <TextField hint="Full Name" [(ngModel)]="user.name" class="input input-border"
+                  ></TextField>
+                <TextField hint="Mobile Number" [(ngModel)]="user.mobileNumber" class="input input-border"></TextField>
+                <TextField hint="Email Address" keyboardType="email"
+                    autocorrect="false" [(ngModel)]="user.email" class="input input-border"></TextField>
+                <TextField hint="Password" secure="true" [(ngModel)]="user.password"
+                    class="input input-border"></TextField>
+                <TextField hint="Confirm Password" secure="true" [(ngModel)]="user.password"
+                    class="input input-border"></TextField>
+
+                <Button text="Signup" class="btn btn-primary" (tap)="signUp()"></Button>
+            </StackLayout>
+        </FlexboxLayout>
+        </StackLayout>
+
+    </TabView>
+
+</GridLayout>
+

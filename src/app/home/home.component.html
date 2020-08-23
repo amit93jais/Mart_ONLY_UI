@@ -1,0 +1,50 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()" width="100"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+         <Label class="title" col="0" text="Shoppers Mart"></Label>
+         <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+         <Label col="2" [text]="cartLength" class="cart-item-no"
+            [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+    </GridLayout>
+</ActionBar>
+
+<StackLayout width="100%" height="100%" >
+    <StackLayout orientation="horizontal" class="search-bar-container">
+        <Button text="Category"></Button>
+          <TextField hint="Search product here..." class="search-bar" [nsRouterLink]="['/search']"
+          pageTransition="sideDrawerTransition" clearHistory="true"></TextField>
+        </StackLayout>
+
+    <GridLayout class="location" columns="100,auto, auto,auto,80">
+    <Label col="1" class="nt-icon fas location-icon" text="&#x1f041;"></Label>
+    <Label col="2" class="location-text text-right" text="Your item delievered here"></Label>
+    <Label col="3" class="nt-icon fas location-icon" text="&#x1f107;"></Label>
+    </GridLayout>
+
+    <Image  src="~/images/banner1.jpg" ></Image>
+    <Image  src="~/images/banner2.jpg" ></Image>
+
+
+    <AbsoluteLayout width="1000" height="105">
+        <Image left="0" top="0" src="~/images/r_banner1.jpg" ></Image>
+        <Image left="140" top="0" src="~/images/r_banner2.jpg" ></Image>
+        <Image left="280" top="0"  src="~/images/r_banner3.jpg" ></Image>
+    </AbsoluteLayout>
+
+        <Image  src="~/images/banner3.jpg" ></Image>
+        <Image  src="~/images/banner4.jpg" ></Image>
+
+</StackLayout>

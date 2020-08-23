@@ -1,0 +1,47 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+         <Label col="0" class="title" text="My Orders"></Label>
+         <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+            [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+         <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"
+            [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+         <Label col="2" [text]="cartLength" class="cart-item-no"></Label>
+    </GridLayout>
+
+    <!-- <GridLayout  columns="auto,auto, 4*, *">
+        <Label col="0" text="My Orders"></Label>
+        <Label col="2" text="&#xf002;" class="nt-icon fas"></Label>
+        <Label col="3" text="&#xf217;" class="nt-icon fas"></Label>
+    </GridLayout> -->
+</ActionBar>
+
+
+<GridLayout rows="*">
+    <ListView  [items]="orderList" class="o-item">
+        <ng-template let-item="item" >
+            <stackLayout (tap) = onNavigateOrderDetails(item) class="m-15">
+            <Label [text]='item.orderDate | date:"fullDate"' class="o-date"></Label>
+            <Label [text]="item.orderId" ></Label>
+            <Label text='Rs. {{item.total}}'></Label>
+                <GridLayout columns="auto, *">
+                <Label col="0" text='{{item.no_of_itmes}} items'></Label>
+                <Label col="1" [text]="item.orderStatus" class="o-status"></Label>
+                </GridLayout>
+            </stackLayout>
+        </ng-template>
+    </ListView >
+</GridLayout>
