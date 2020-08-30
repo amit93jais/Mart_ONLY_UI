@@ -23,7 +23,8 @@
         <Label row="1" class="p-name" text="Amit Jaiswal"></Label>
         <Label row="2" text="+9174110463857"></Label>
         <Label row="3" text="jais.amit93@mail.com"></Label>
-        <Label row="3" text="&#xf044;" class="text-right nt-icon fas edit-icon"></Label>
+        <Label row="3" text="&#xf044;" [nsRouterLink]="['/account/profile']" pageTransition="slide"
+                 class="text-right nt-icon fas edit-icon"></Label>
     </Gridlayout>
 
 
@@ -52,6 +53,15 @@
         <Label  class="p-name" text="My Reviews"></Label>
         <StackLayout class="hr"></StackLayout>
         <Label class="link" text="view your reviews"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="Account Settings" [nsRouterLink]="['/account/profile']"
+        pageTransition="sideDrawerTransition"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="Logout" (tap)="logout()"></Label>
     </StackLayout>
 
 </StackLayout>

@@ -28,10 +28,19 @@
     <ListView  [items]="addressList" class="o-item" separatorColor="blue">
         <ng-template let-item="item">
             <StackLayout height= "100" class="data-container">
-                <Label text={{item.fullName}} class="o-solid"></Label>
-                <Label text='{{item.addressLine1}}, {{item.addressLine2}}, {{item.city}} - {{item.postalCode}}'
-                class="o-regular"> </Label>
+                <StackLayout orientation="horizontal">
+                    <Label class="radio-btn" [class.selected]="item.isDefault" (tap)="changeDefaultAddress(item.id)"></Label>
+                    <Label text={{item.fullName}} class="o-solid"></Label>
+                </StackLayout>
+
+                <Label text='{{item.addressLine1}}, {{item.addressLine2}}' class="o-regular"> </Label>
+                <Label text='{{item.city}} - {{item.postalCode}}' class="o-regular"> </Label>
                 <Label text={{item.mobileNumber}} class="p-mobile"></Label>
+
+                <DockLayout  orientation="horizontal">
+                    <Button dock="left" text="Edit" (tap)="editAddress(item)" class="edit-btn"></Button>
+                    <Button dock="right" text="Remove" (tap)="removeAddress()" class="remove-btn"></Button>
+                </DockLayout >
              </StackLayout>
         </ng-template>
     </ListView >

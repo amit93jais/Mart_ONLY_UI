@@ -1,0 +1,2 @@
+Added plugin for local notification (ex. Logged out successfuly message)
+tns plugin add nativescript-toast

@@ -11,35 +11,29 @@
 
 </ActionBar>
 
-<StackLayout class="my-account">
-    <FlexboxLayout>
+<ScrollView orientation="vertical">
         <StackLayout class="form">
-
-            <TextField hint="Pin Code*" [(ngModel)]="address.postalCode" class="input input-border"
-              ></TextField>
-            <TextField hint="House No./ Building Name*" [(ngModel)]="address.addressLine1" class="input input-border"
-              ></TextField>
-            <TextField hint="Area / Road Name / Colony*" [(ngModel)]="address.addressLine2" class="input input-border"
-              ></TextField>
-            <TextField hint="City*" [(ngModel)]="address.city" class="input input-border"></TextField>
-            <TextField hint="State*" [(ngModel)]="address.state" class="input input-border"></TextField>
-            <TextField hint="LandMark (optional)" [(ngModel)]="address.landMark" class="input input-border"></TextField>
+         <!--    <Label text="pin code*"></Label> -->
+            <TextField hint="Pin Code*" [(ngModel)]="address.postalCode"
+                 class="input input-border new-address"></TextField>
+            <TextField hint="House No./ Building Name*" [(ngModel)]="address.addressLine1"
+                class="input input-border new-address"></TextField>
+            <TextField hint="Area / Road Name / Colony*" [(ngModel)]="address.addressLine2"
+                 class="input input-border new-address"></TextField>
+            <TextField hint="City*" [(ngModel)]="address.city" class="1input 1input-border new-address"></TextField>
+            <TextField hint="State*" [(ngModel)]="address.state" class="input input-border new-address"></TextField>
+            <TextField hint="LandMark (optional)" [(ngModel)]="address.landMark"
+                class="input input-border new-address"></TextField>
 
             <StackLayout class="hr"></StackLayout>
 
-            <TextField hint="Full Name*" [(ngModel)]="address.addressLine2" class="input input-border"
-              ></TextField>
-            <TextField hint="Mobile Number*" [(ngModel)]="address.mobileNumber" class="input input-border"></TextField>
-            <TextField hint="Alternate Mobile Number (optional)" [(ngModel)]="address.alternateMobileNumber" class="input input-border">
-            </TextField>
+            <TextField hint="Full Name*" [(ngModel)]="address.fullName"
+                class="input input-border new-address"></TextField>
+            <TextField hint="Mobile Number*" [(ngModel)]="address.mobileNumber"
+                class="input input-border new-address"></TextField>
+            <TextField hint="Alternate Mobile Number (optional)" [(ngModel)]="address.alternateMobileNumber"
+                 class="input input-border new-address"></TextField>
 
-            <Button text="Save" class="btn btn-primary" (tap)="save()"></Button>
+            <Button text="Save" class="btn btn-primary save-btn" (tap)="save()"></Button>
         </StackLayout>
-    </FlexboxLayout>
-
-
-
-
-
-</StackLayout>
-
+    </ScrollView>

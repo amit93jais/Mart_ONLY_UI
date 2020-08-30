@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
         private page:Page, private _activatedRoute: ActivatedRoute) {
             this.user = new User();
 
-            //this.user.email = "my.test.account@nativescript.org";
+           // this.user.email = "my.test.account@nativescript.org";
             //this.user.password = "mypassword";
         }
 

@@ -6,17 +6,12 @@ import { AddressComponent } from "./address.component";
 import { AddAddressComponent } from "./add-address.component";
 
 const routes: Routes = [
-    { path: "", component: AddressComponent },
-    { path: "addAddress", component: AddAddressComponent},
-];
-
-const routes1: Routes = [
+    { path: "", component: AddressComponent} ,
     { path: "addAddress", component: AddAddressComponent},
 ];
 
 @NgModule({
    imports: [NativeScriptRouterModule.forChild(routes)],
-  // imports: [NativeScriptRouterModule.forChild(routes), NativeScriptRouterModule.forRoot(routes1)],
     exports: [NativeScriptRouterModule]
 
 })

@@ -28,11 +28,13 @@
           pageTransition="sideDrawerTransition" clearHistory="true"></TextField>
         </StackLayout>
 
-    <GridLayout class="location" columns="100,auto, auto,auto,80">
-    <Label col="1" class="nt-icon fas location-icon" text="&#x1f041;"></Label>
-    <Label col="2" class="location-text text-right" text="Your item delievered here"></Label>
-    <Label col="3" class="nt-icon fas location-icon" text="&#x1f107;"></Label>
-    </GridLayout>
+    <StackLayout class="location" orientation="horizontal">
+    <Label class="nt-icon fas location-icon" text="&#x1f041;"></Label>
+    <Label  class="location-text text-right"
+         text='Delivered to {{address.fullName | SliceBeforSpace}} - {{address.city}} {{address.postalCode}}'></Label>
+    <Label class="nt-icon fas location-icon" text="&#x1f107;"
+                [nsRouterLink]="['/address']" pageTransition="sideDrawerTransition"></Label>
+    </StackLayout>
 
     <Image  src="~/images/banner1.jpg" ></Image>
     <Image  src="~/images/banner2.jpg" ></Image>

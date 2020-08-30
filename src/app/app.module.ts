@@ -8,6 +8,7 @@ import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+//import { SliceBeforSpace } from "./services/slice.space.pipe";
 
 @NgModule({
     bootstrap: [
@@ -22,11 +23,12 @@ import { AppComponent } from "./app.component";
         NativeScriptRouterModule,
         //Added for Validators
         //tns plugin add nativescript-ui-dataform
-        NativeScriptUIDataFormModule
+        NativeScriptUIDataFormModule,
 
     ],
     declarations: [
-        AppComponent
+        AppComponent,
+     //   SliceBeforSpace
     ],
     schemas: [
         NO_ERRORS_SCHEMA

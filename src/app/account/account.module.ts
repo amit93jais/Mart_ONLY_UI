@@ -3,6 +3,8 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { AccountRoutingModule } from "./account-routing.module";
 import { AccountComponent } from "./account.component";
+import { ProfileComponent } from "./profile.component";
+import { PasswordChangeComponent } from "./password-change.component";
 
 @NgModule({
     imports: [
@@ -10,7 +12,7 @@ import { AccountComponent } from "./account.component";
         AccountRoutingModule
     ],
     declarations: [
-        AccountComponent
+        AccountComponent, ProfileComponent, PasswordChangeComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

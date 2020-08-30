@@ -10,6 +10,7 @@ export class Address {
     state: string;
     mobileNumber:string;
     alternateMobileNumber: string;
+    isDefault: boolean;
     userId:number;
 
 }

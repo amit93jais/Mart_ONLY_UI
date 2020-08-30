@@ -18,8 +18,7 @@ const routes: Routes = [
     { path: "orderDetails/:id", loadChildren: () => import("~/app/order-details/order-details.module").then((m) => m.OrderDetailsModule) },
     { path: "cart", loadChildren: () => import("~/app/cart/cart.module").then((m) => m.CartModule) },
     { path: "auth/:tab", loadChildren: () => import("~/app/auth/auth.module").then((m) => m.AuthModule) },
-    { path: "address", loadChildren: () => import("~/app/address/address.module").then((m) => m.AddressModule),
-        children:  { path: "addAddress", component: AddAddressComponent} }
+    { path: "address", loadChildren: () => import("~/app/address/address.module").then((m) => m.AddressModule)},
 ];
 
 @NgModule({

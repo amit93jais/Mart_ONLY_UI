@@ -10,8 +10,8 @@ export class AddressService {
     orderUrl = environment.backendUrl + '/order.json';
 
     addressDetails: Address[] = [
-        {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '', userId:101},
-        {id : 2, fullName: 'Mohit Tiwari',addressLine1: '523, Sector 18',addressLine2: '', landMark: '',city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '7411046386', alternateMobileNumber: '', userId:101},
+        {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '', isDefault:true ,userId:101},
+        {id : 2, fullName: 'Mohit Tiwari',addressLine1: '523, Sector 18',addressLine2: '', landMark: '',city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '7411046386', alternateMobileNumber: '', isDefault:false,userId:101},
       ];
 
     constructor(private http: HttpClient) { }
@@ -22,6 +22,10 @@ export class AddressService {
       // .pipe( catchError(this.handleError))
         //.subscribe(response => console.log(response));
         return of (this.addressDetails);
+      }
+
+      getDefaultAddress(): Observable<Address>{
+        return of (this.addressDetails[0]);
       }
 
       private handleError(error: HttpErrorResponse) {
