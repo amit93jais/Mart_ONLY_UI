@@ -15,25 +15,25 @@
 
     <GridLayout columns="auto, *, auto">
          <Label col="0" class="title" text="Shoppers Mart"></Label>
+         <Label col="1" *ngIf="orderId" text="&#xf002;" class="page__content-icon fas search-icon"
+           (tap)=refresh()></Label>
          <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
          <Label col="2" [text]="cartLength" class="cart-item-no"
          [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
     </GridLayout>
-
-    <!--  <GridLayout  columns="auto,auto, 4*, *">
-        <Label col="0" text="My Orders"></Label>
-        <Label col="3" text="&#xf217;" class="nt-icon fas"></Label>
-        <Label col="3" [text]="cartLength" class="cart-item-no"></Label>
-    </GridLayout> -->
 </ActionBar>
 
 <StackLayout>
     <StackLayout>
-        <SearchBar hint="Search item here ..." textFieldHintColor="whitesmoke"
+        <SearchBar *ngIf="!orderId" hint="Search item here ..." textFieldHintColor="whitesmoke"
                 [text]="searchPhrase" (textChange)="onTextChanged($event)"
                 (clear)="onClear($event)" (submit)="onSubmit($event)">
         </SearchBar>
-        <StackLayout row="1" class="hr "></StackLayout>
+        <StackLayout *ngIf="!orderId" class="hr"></StackLayout>
+        <GridLayout *ngIf="orderId" columns="auto,*,auto" class="shop-order">
+            <Label col="0" [text]="orderId"></Label>
+            <Label col="2" class="add-all page__content-icon fas" text="&#x1f0fe;" (tap)="addAllToCart()"></Label>
+        </GridLayout>
     </StackLayout>
 
 
@@ -47,10 +47,10 @@
                         <Label row="0" col="0" [text]="item.product.name" class="o-regular"></Label>
                         <Label row="1" col="0" [text]="item.product.weight"></Label>
                         <Label row="2" col="0" text="Rs. {{item.product.price}}" class="o-solid"></Label>
-                        <Button class="add-item-btn" *ngIf="item.quantity==0" row="2" col="3" text="Add" (tap)="addToCart(item)"></Button>
-                        <Button class="add-unit-btn" *ngIf="item.quantity>0" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
-                        <Label *ngIf="item.quantity>0" row="2" col="3" [text]="item.quantity"></Label>
-                        <Button class="add-unit-btn" *ngIf="item.quantity>0" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
+                        <Button class="add-item-btn" *ngIf="item.qtyInCart==0" row="2" col="3" text="Add" (tap)="addToCart(item)"></Button>
+                        <Button class="add-unit-btn" *ngIf="item.qtyInCart>0" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
+                        <Label *ngIf="item.qtyInCart>0" row="2" col="3" [text]="item.qtyInCart"></Label>
+                        <Button class="add-unit-btn" *ngIf="item.qtyInCart>0" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
                     </GridLayout>
                 </GridLayout>
             </ng-template>

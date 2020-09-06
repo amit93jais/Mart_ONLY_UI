@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { CartRoutingModule } from "./cart-routing.module";
 import { CartComponent } from "./cart.component";
+import { CheckoutComponent } from "./checkout.component";
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import { CartComponent } from "./cart.component";
         CartRoutingModule
     ],
     declarations: [
-        CartComponent
+        CartComponent,
+        CheckoutComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

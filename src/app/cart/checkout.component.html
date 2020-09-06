@@ -1,0 +1,41 @@
+<ActionBar>
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+<ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Delivery Options"></Label>
+</ActionBar>
+
+    <BottomNavigation>
+        <TabStrip>
+            <TabStripItem (tap)="payment()" class="tabstripitem">
+                <Label text="Payment" class="t-36"></Label>
+            </TabStripItem>
+        </TabStrip>
+
+      <TabContentItem>
+        <StackLayout class="checkout-page">
+            <StackLayout class="delivery-address">
+                <Label text='&#x1f3c5; Delivered To: {{address.addressType}}' class="nt-icon fas t-36"></Label>
+                <Label text='  {{address.fullName}}' class="t-16"></Label>
+                <Label text='  {{address.addressLine1}}' class="t-16"></Label>
+                <Label text='  {{address.addressLine2}}' class="t-16"></Label>
+                <Label text='  {{address.city}} - {{address.postalCode}}' class="t-16"></Label>
+                <Label text='  {{address.mobileNumber}}' class="t-16"></Label>
+                <Button text="change" [nsRouterLink]="['/address']"
+                    pageTransition="sideDrawerTransition"></Button>
+            </StackLayout>
+
+        </StackLayout>
+        </TabContentItem>
+
+    </BottomNavigation>

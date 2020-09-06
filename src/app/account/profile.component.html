@@ -26,7 +26,10 @@
 
 
     <StackLayout class="form">
-        <TextField hint="First Name*" [(ngModel)]="user.firstName"
+        <RadDataForm #myValidationModesDataForm [source]="user" [metadata]="profileMetadata">
+        </RadDataForm>
+
+      <!--   <TextField hint="First Name*" [(ngModel)]="user.firstName"
             class="input input-border new-address"></TextField>
         <TextField hint="Last Name*" [(ngModel)]="user.lastName"
             class="input input-border new-address"></TextField>
@@ -34,11 +37,11 @@
             class="input input-border new-address"></TextField>
         <TextField hint="Email*" [(ngModel)]="user.email"
             class="input input-border new-address"></TextField>
-
+     -->
         <Button text="Save" class="btn btn-primary save-btn" (tap)="save()"></Button>
 
         <StackLayout class="hr"></StackLayout>
-        <!-- later can be changed if account login will be based on otp -->
+        // later can be changed if account login will be based on otp
         <Label text="Change Password" [nsRouterLink]="['/account/password/change']"
                  pageTransition="slide" class="change-password"></Label>
         <StackLayout class="hr"></StackLayout>

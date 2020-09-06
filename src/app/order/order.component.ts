@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit {
      this.selectedOrder = order;
      console.log("********* Selected order "+this.selectedOrder.orderId);
     //this._router.navigate(["/orderDetails", id]);
-    this._router.navigate(['/orderDetails/'+order.id], {
+    this._router.navigate(['/order/details/'+order.id], {
     state: {
          order: this.selectedOrder
        // frontEnd: JSON.stringify({ orderNumber: this.selectedOrder.orderId, items: this.selectedOrder.no_of_itmes }),

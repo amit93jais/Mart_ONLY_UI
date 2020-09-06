@@ -33,6 +33,9 @@
                 class="input input-border new-address"></TextField>
             <TextField hint="Alternate Mobile Number (optional)" [(ngModel)]="address.alternateMobileNumber"
                  class="input input-border new-address"></TextField>
+               <!--    Need to do this radio button -->
+            <TextField hint="Address Type(ex.Home/Other)" [(ngModel)]="address.addressType"
+                 class="input input-border new-address"></TextField>
 
             <Button text="Save" class="btn btn-primary save-btn" (tap)="save()"></Button>
         </StackLayout>

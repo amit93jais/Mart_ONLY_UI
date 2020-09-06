@@ -1,9 +1,10 @@
 import { Product } from "./product";
 
-export interface CartItem {
+export class CartItem {
    // id : number;
     product: Product;
     quantity: number;
    // productId: number;
     userId: number;
+
 }

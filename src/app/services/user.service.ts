@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { User } from "../model/user";
 import { Config } from "../config/config";
@@ -8,12 +8,16 @@ import { Config } from "../config/config";
 
 @Injectable()
 export class UserService {
+
+    userDetails: User =   {id:1, firstName : 'Amit', lastName: 'Jaiswal', mobileNumber: '7411046385' ,email: 'user@mart.com', password: null, confirmPassword: null};
     constructor(private http: HttpClient) { }
 
     register(user: User) {
-        if (!user.email || !user.password) {
-            return throwError("Please provide both an email address and password.");
-        }
+        //if (!user.email || !user.password) {
+            //This is coming as a notification
+          //  return throwError("Please provide both an email address and password.");
+       // }
+       console.log("Successfully Registered");
 
         return this.http.post(
             Config.apiUrl + "user/" + Config.appKey,
@@ -43,6 +47,10 @@ export class UserService {
             }),
             catchError(this.handleErrors)
         );
+    }
+
+    getProfileDetails(): Observable<User>{
+      return of(this.userDetails);
     }
 
     getCommonHeaders() {

@@ -1,19 +1,19 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
-import { FaqRoutingModule } from "./faq-routing.module";
-import { FaqComponent } from "./faq.component";
+import { ReferRoutingModule } from "./refer-routing.module";
+import { ReferComponent } from "./refer.component";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        FaqRoutingModule
+        ReferRoutingModule
     ],
     declarations: [
-        FaqComponent
+        ReferComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]
 })
-export class FaqModule { }
+export class ReferModule { }

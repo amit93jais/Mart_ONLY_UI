@@ -19,10 +19,8 @@ export class OrderDetailsComponent implements OnInit {
 
     addressList : Address[] = [];
     deliveryAddress : Address;
-
     private _paramSubcription: any;
 
-    //data: any = {};
     routeState: any;
     order: Order;
 
@@ -30,6 +28,7 @@ export class OrderDetailsComponent implements OnInit {
 
     constructor( private _activatedRoute: ActivatedRoute, private router: Router,  private addressService: AddressService ) {
         //The below code is used to get data from order component.
+        //Note If orderId is not null means we are displaying product from previos order
         if (this.router.getCurrentNavigation().extras.state) {
             this.routeState = this.router.getCurrentNavigation().extras.state;
             if (this.routeState) {
@@ -56,6 +55,12 @@ export class OrderDetailsComponent implements OnInit {
     getAddress(){
         this.addressService.getAllAddress().subscribe(addresses => this.addressList = addresses);
         this.deliveryAddress = this.addressList[0];
+    }
+
+    shopFromOrder(){
+           this.router.navigate(['/search'], {
+           state: { orderId: this.order.orderId}
+           });
     }
 
 }

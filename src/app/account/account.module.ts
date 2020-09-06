@@ -5,11 +5,13 @@ import { AccountRoutingModule } from "./account-routing.module";
 import { AccountComponent } from "./account.component";
 import { ProfileComponent } from "./profile.component";
 import { PasswordChangeComponent } from "./password-change.component";
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        AccountRoutingModule
+        AccountRoutingModule,
+        NativeScriptUIDataFormModule //---This is used for RadDataForm
     ],
     declarations: [
         AccountComponent, ProfileComponent, PasswordChangeComponent

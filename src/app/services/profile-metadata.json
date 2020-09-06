@@ -1,0 +1,68 @@
+{
+  "isReadOnly": false,
+  "commitMode": "Manual",
+  "validationMode": "Immediate",
+  "propertyAnnotations":
+  [
+      {
+          "name": "firstName",
+          "displayName": "First Name*",
+          "index": 0,
+          "validators": [{
+            "name": "NonEmptyValidator",
+            "params": {
+            "errorMessage": "First name cannot be blank."
+            }
+          }]
+      },
+      {
+          "name": "lastName",
+          "displayName": "Last Name*",
+          "index": 1,
+          "validators": [{
+            "name": "NonEmptyValidator",
+            "params": {
+              "errorMessage": "Last name cannot be blank."
+              }
+          }]
+      },
+      {
+          "name": "email",
+          "displayName": "E-Mail",
+          "index": 3,
+          "editor": "Email",
+          "validators": [{
+            "name": "RegEx",
+            "params": {
+               "regEx": "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.com)+",
+               "errorMessage": "Please provide valid email."
+           }
+       }]
+      },
+      {
+          "name": "mobileNumber",
+          "displayName": "Mobile Number*",
+          "index": 2,
+          "editor": "Phone",
+          "validators": [{
+            "name": "RegEx",
+             "params": {
+               "regEx": "^[6-9][0-9]{9}$",
+               "errorMessage": "Please provide valid 10 digit mobile number."
+           }
+       }]
+      },
+      {
+        "name": "password",
+        "ignore": true
+    },
+    {
+      "name": "confirmPassword",
+      "ignore": true
+  },
+  {
+    "name": "id",
+    "ignore": true
+  }
+  ]
+}

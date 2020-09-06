@@ -15,10 +15,14 @@ export class CartService {
     product4: Product = {id:4, name:'Tomato', imageUrl:'~/images/products/tomato.jpg', category:'', weight:'1 kg',price:60};
 
     productQty: ProductQty[] =[
-        {product: this.product1, quantity:1},
-        {product: this.product2, quantity:1},
-        {product: this.product3, quantity:1},
-        {product: this.product4, quantity:2},
+        {product: this.product1, qtyInCart:1},
+        {product: this.product3, qtyInCart:1},
+        {product: this.product4, qtyInCart:1},
+        {product: this.product4, qtyInCart:1},
+        {product: this.product4, qtyInCart:1},
+        {product: this.product3, qtyInCart:2},
+        {product: this.product2, qtyInCart:2},
+        {product: this.product1, qtyInCart:3}
 
     ]
 

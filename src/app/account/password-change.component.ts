@@ -27,6 +27,22 @@ export class PasswordChangeComponent implements OnInit {
     }
 
     changePassword(){
+     if(this.passwordValidate()){
+        console.log("Changes password service called");
+     }
+    }
 
+    public passwordValidate(): boolean {
+        let validationResult = true;
+            if (this.newPassword !== this.confirmPassword) {
+                alert("Password do not match.");
+                validationResult = false;
+            }
+            if(this.newPassword != undefined && this.newPassword.length < 6){
+                alert("Password must be atleast 6 character.");
+                validationResult = false;
+            }
+
+       return validationResult;
     }
 }

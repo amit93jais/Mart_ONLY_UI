@@ -1,0 +1,100 @@
+{
+  "isReadOnly": false,
+  "commitMode": "Manual",
+  "validationMode": "Immediate",
+  "propertyAnnotations":
+  [
+      {
+          "name": "postalCode",
+          "displayName": "Pin Code*",
+          "index": 0,
+          "editor": "Number",
+          "validators": [{
+            "name": "RegEx",
+             "params": {
+               "regEx": "[0-9]{6}$",
+               "errorMessage": "Please provide 6 digit valid pin code."
+           }
+       }]
+      },
+      {
+          "name": "addressLine1",
+          "displayName": "House No./ Building Name*",
+          "index": 1
+      },
+      {
+          "name": "addressLine2",
+          "displayName": "Area / Road name / colony",
+          "index": 2
+      },
+      {
+        "name": "city",
+        "displayName": "City*",
+        "index": 3,
+        "columnIndex": 0
+      },
+      {
+        "name": "state",
+        "displayName": "State*",
+        "index": 3,
+        "columnIndex": 1
+      },
+      {
+        "name": "landMark",
+        "displayName": "Landmark",
+        "hint": "Optional",
+        "index": 5
+      },
+      {
+        "name": "fullName",
+        "displayName": "Full Name*",
+        "index": 6,
+        "validators": [{
+          "name": "NonEmptyValidator",
+          "params": {
+          "errorMessage": " Name cannot be blank."
+          }
+        }]
+      },
+      {
+          "name": "mobileNumber",
+          "displayName": "Mobile Number*",
+          "index": 7,
+          "editor": "Phone",
+          "validators": [{
+            "name": "RegEx",
+             "params": {
+               "regEx": "^[6-9][0-9]{9}$",
+               "errorMessage": "Please provide valid 10 digit mobile number."
+           }
+       }]
+      },
+      {
+        "name": "alternateMobileNumber",
+        "displayName": "Alternate Mobile Number",
+        "hint": "Optional",
+        "index": 8,
+        "editor": "Phone"
+    },
+    {
+      "name": "addressType",
+      "displayName": "AddressType",
+      "index": 9,
+      "editor": "Picker",
+      "valuesProvider": ["Home", "Other"]
+  },
+  {
+    "name": "id",
+    "displayName": "id",
+    "ignore": true
+},
+{
+  "name": "userId",
+  "ignore": true
+},
+{
+  "name": "isDefault",
+  "ignore": true
+}
+  ]
+}

@@ -2,10 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import * as app from "tns-core-modules/application";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 import { SearchService } from "../services/search.service";
-import { Product } from "../model/product";
 import { CartItem } from "../model/cart-item";
 import { ProductQty } from "../model/productQty";
+import { Router } from "@angular/router";
+
 
 @Component({
     selector: "Search",
@@ -18,16 +20,31 @@ export class SearchComponent implements OnInit {
     serResult: ProductQty[] = [];
     cartList: CartItem[] = [];
     cartLength: number = 3;
+    addAllMsg = "Are you sure that you want to add all the products.";
 
+    routeState: any;
+    orderId: string;
 
-    constructor(private serService: SearchService) {
-        // Use the component constructor to inject providers.
+    constructor(private router: Router, private serService: SearchService) {
+        //The below code is used to get data from order component.
+        if (this.router.getCurrentNavigation().extras.state) {
+            this.routeState = this.router.getCurrentNavigation().extras.state;
+            if (this.routeState) {
+                this.orderId = this.routeState.orderId;
+            }
+        }
+
     }
 
     ngOnInit(): void {
         this.cartList.forEach( pq =>  {
             this.cartLength = this.cartLength + pq.quantity;
         })
+
+        if(this.orderId != undefined && this.orderId != null){
+            //this.isShopFromOrder = true;
+            this.getProductByOrder(this.orderId);
+          }
 
     }
 
@@ -60,24 +77,24 @@ export class SearchComponent implements OnInit {
         console.log("serach by key****" + this.serResult.length);
     }
 
+    refresh(){
+        this.orderId = null;
+        this.serResult = [];
+        //window.location.reload();
+    }
+
     addToCart(productQty: ProductQty) {
         let cartItem :CartItem = {product:productQty.product, quantity:1, userId:101};
         this.cartList.push(cartItem);
         console.log("item in cart list****" + this.cartList.length);
         this.cartLength++;
-        productQty.quantity++;
+        productQty.qtyInCart++;
         //call service to update cart
 
     }
 
-   /*  isProductExistInCart(product) {
-        if (this.cartIdList.indexOf(product.id) > -1) return true;
-        else return false;
-    } */
-
-
     increaseQty(productQty: ProductQty) {
-       productQty.quantity++;
+       productQty.qtyInCart++;
         this.cartLength++;
     }
 
@@ -87,7 +104,42 @@ export class SearchComponent implements OnInit {
             pq.qunatity--;
             }
         }); */
-        productQty.quantity--;
+        productQty.qtyInCart--;
         this.cartLength--;
     }
+
+    //This method will pass input as order id
+    //We have to find Products for this item.
+    //Check items avaible
+    // and convert this o-item into productQty(op of backend service)
+    getProductByOrder(orderId){
+        this.serService
+        .getProductFromOrder(orderId)
+        .subscribe((ser) => (this.serResult = ser));
+    }
+
+    /*
+    *This will add all item(along with quantity ordered) from this order into cart.
+    *If there will be an extra item already in the cart then that will remain same.
+    *If same product is alredy in cart.Then adding all items will update the qunatity in prev order.
+    */
+    addAllToCart(){
+        dialogs.confirm(this.addAllMsg).then(result => {
+            console.log("Dialog result: " + result);
+        });
+
+        this.serResult.forEach((pq) =>{
+            let cartItem :CartItem = new CartItem();
+            cartItem.product = pq.product;
+            cartItem.quantity = 2; //This is quntity in prev order...Call from service
+
+            this.cartList.push(cartItem);
+            this.cartLength++;
+            pq.qtyInCart++;
+
+        });
+        console.log("item in cart list****" + this.cartList.length);
+    }
+
+
 }

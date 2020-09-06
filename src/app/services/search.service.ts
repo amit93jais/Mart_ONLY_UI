@@ -19,10 +19,10 @@ export class SearchService {
     product4: Product = {id:4, name:'Tomato', imageUrl:'~/images/products/tomato.jpg', category:'', weight:'1 kg',price:60};
 
     productQty: ProductQty[] =[
-        {product: this.product1, quantity:2},
-        {product: this.product2, quantity:1},
-        {product: this.product3, quantity:0},
-        {product: this.product4, quantity:0},
+        {product: this.product1, qtyInCart:2},
+        {product: this.product2, qtyInCart:0},
+        {product: this.product3, qtyInCart:1},
+        {product: this.product4, qtyInCart:1},
 
     ]
 
@@ -30,8 +30,11 @@ export class SearchService {
 
     getProductByKey(serachKey: string): Observable<ProductQty[]> {
         return of (this.productQty);
-      }
+    }
 
+    getProductFromOrder(orderId: string): Observable<ProductQty[]> {
+        return of (this.productQty);
+      }
 
       private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

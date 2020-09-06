@@ -9,14 +9,12 @@ import { Payment } from '../model/payment';
 import { Product } from '../model/product';
 import { OItem } from '../model/o-Item';
 
-@Injectable(
-//    {providedIn: 'root'}
-)
+@Injectable()
 export class OrderService {
     //serviceUrl = environment.backendUrl + '/mart/user';
     orderUrl = environment.backendUrl + '/order.json';
 
-    address: Address =   {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '',isDefault:false, userId:101};
+    address: Address =   {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '',addressType:"Home", isDefault:false, userId:101};
     payment: Payment = {id: 1, invoiceNumber: 'MGUI-116535589-150420', paymentOption: 'Cash', subTotal: 1232.15, deliveryCharge: 30, walletCredit:34, discount:40, total:1197}
     items: OItem[] = [
         {id:1, name:'Potato', imageUrl:'~/images/products/potato.jpg', category:'', weight:'1 kg', price:32,  quantity:2},

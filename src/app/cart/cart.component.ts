@@ -3,6 +3,7 @@ import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { CartService } from "../services/cart.service";
 import { ProductQty } from "../model/productQty";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "Cart",
@@ -14,7 +15,7 @@ export class CartComponent implements OnInit {
 
     cartList: ProductQty[] = [];
 
-    constructor(private cartService: CartService) {
+    constructor(private router:Router, private cartService: CartService) {
         // Use the component constructor to inject providers.
     }
 
@@ -32,12 +33,12 @@ export class CartComponent implements OnInit {
     }
 
     increaseQty(productQty: ProductQty) {
-        productQty.quantity++;
+        productQty.qtyInCart++;
      }
 
      decreaseQty(productQty: ProductQty) {
-         productQty.quantity--;
-         if(productQty.quantity == 0){
+         productQty.qtyInCart--;
+         if(productQty.qtyInCart == 0){
              this.deleteItem(productQty);
          }
      }
@@ -47,5 +48,10 @@ export class CartComponent implements OnInit {
         if (index !== -1) {
             this.cartList.splice(index, 1);
         }
+     }
+
+     checkout(){
+         console.log("checkout called");
+         this.router.navigateByUrl("/cart/checkout");
      }
 }

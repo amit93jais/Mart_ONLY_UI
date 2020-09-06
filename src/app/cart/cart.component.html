@@ -9,29 +9,44 @@
     NavigationButton as a side-drawer button in iOS is not possible,
     because its function is to always navigate back in the application.
     -->
-    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+<ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
         ios.position="left">
     </ActionItem>
     <Label text="My Cart"></Label>
 </ActionBar>
 
-<StackLayout>
-<GridLayout rows="*">
-    <ListView  [items]="cartList">
-        <ng-template let-item="item" >
-            <GridLayout rows="auto,*" columns="auto,25, *">
-                <Image row="0" col="0" [src]="item.product.imageUrl" class="p-image" ></Image>
+    <BottomNavigation>
+        <TabStrip>
+            <TabStripItem (tap)="checkout()" class="tabstripitem">
+                <Label text="Checkout" class="fas t-36"></Label>
+            </TabStripItem>
+            <TabStripItem (tap)="checkout()" class="tabstripitem">
+                <Label text="Saved RS. 124.28"></Label>
+                <Label text="&#xf156; 982.28" class="nt-icon fas t-36"></Label>
+            </TabStripItem>
+            <TabStripItem (tap)="checkout()" class="tabstripitem">
+                <Image src="font://&#xf061;" class="fas t-36"></Image>
+            </TabStripItem>
+        </TabStrip>
 
-                <GridLayout col="2" rows="auto,auto,*" columns="auto,*,auto,auto,auto">
-                    <Label row="0" col="0" [text]="item.product.name" class="o-regular"></Label>
-                    <Label row="1" col="0" [text]="item.product.weight"></Label>
-                    <Label row="2" col="0" text="Rs. {{item.product.price}}" class="o-solid"></Label>
-                    <Button class="add-unit-btn" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
-                    <Label  row="2" col="3" [text]="item.quantity"></Label>
-                    <Button class="add-unit-btn" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
-                </GridLayout>
-            </GridLayout>
-        </ng-template>
-    </ListView >
-    </GridLayout>
-    </StackLayout>
+      <TabContentItem>
+        <StackLayout>
+            <ListView [items]="cartList">
+                <ng-template let-item="item" >
+                    <GridLayout rows="auto,*" columns="auto,25, *">
+                        <Image row="0" col="0" [src]="item.product.imageUrl" class="p-image" ></Image>
+
+                        <GridLayout col="2" rows="auto,auto,*" columns="auto,*,auto,auto,auto">
+                            <Label row="0" col="0" [text]="item.product.name" class="o-regular"></Label>
+                            <Label row="1" col="0" [text]="item.product.weight"></Label>
+                            <Label row="2" col="0" text="Rs. {{item.product.price}}" class="o-solid"></Label>
+                            <Button class="add-unit-btn" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
+                            <Label  row="2" col="3" [text]="item.qtyInCart"></Label>
+                            <Button class="add-unit-btn" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
+                        </GridLayout>
+                    </GridLayout>
+                </ng-template>
+            </ListView >
+            </StackLayout>
+        </TabContentItem>
+    </BottomNavigation>
