@@ -27,7 +27,9 @@ export class OrderService {
         {id : 2, orderId: 'DX-MGMU-118335-290420', orderDate: new Date(2019, 7, 7), orderStatus: 'Cancelled', total: 2365.00, noOfItmes: 13, payment: this.payment, address: this.address, items: this.items},
         {id : 3, orderId: 'DX-MGMU-118335-290420',orderDate: new Date(2020, 6, 17), orderStatus: 'Delivered', total: 2365.00, noOfItmes: 10, payment: this.payment, address: this.address, items: this.items},
         {id : 4, orderId: 'DX-MGMU-118335-290420', orderDate: new Date(2019, 7, 7), orderStatus: 'Cancelled', total: 2365.00, noOfItmes: 13, payment: this.payment, address: this.address, items: this.items},
-        {id : 5, orderId: 'DX-MGMU-118335-290420',orderDate: new Date(2020, 6, 17), orderStatus: 'Dispatched', total: 2365.00, noOfItmes: 10, payment: this.payment, address: this.address, items: this.items}
+        {id : 5, orderId: 'DX-MGMU-118335-290420',orderDate: new Date(2020, 6, 17), orderStatus: 'Dispatched', total: 2365.00, noOfItmes: 10, payment: this.payment, address: this.address, items: this.items},
+        {id : 6, orderId: 'DX-MGMU-118335-290420',orderDate: new Date(2020, 6, 17), orderStatus: 'Dispatched', total: 2365.00, noOfItmes: 10, payment: this.payment, address: this.address, items: this.items},
+        {id : 7, orderId: 'DX-MGMU-118335-290420',orderDate: new Date(2020, 6, 17), orderStatus: 'Dispatched', total: 2365.00, noOfItmes: 10, payment: this.payment, address: this.address, items: this.items}
       ];
 
     constructor(private http: HttpClient) { }

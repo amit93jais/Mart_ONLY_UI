@@ -7,13 +7,13 @@ import { RateComponent } from "./rate.component";
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        RateRoutingModule
+        RateRoutingModule,
     ],
     declarations: [
         RateComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
-    ]
+    ],
 })
 export class RateModule { }

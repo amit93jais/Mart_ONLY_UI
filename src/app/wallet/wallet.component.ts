@@ -4,9 +4,13 @@ import * as app from "tns-core-modules/application";
 
 @Component({
     selector: "Wallet",
-    templateUrl: "./wallet.component.html"
+    templateUrl: "./wallet.component.html",
+    styleUrls: ["./wallet.component.css"]
 })
 export class WalletComponent implements OnInit {
+
+    balance = 0.00;
+    rewardpoint = 10;
 
     constructor() {
         // Use the component constructor to inject providers.

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import {getString} from "tns-core-modules/application-settings";
 import * as app from "tns-core-modules/application";
 import { OrderService } from "../services/order.service";
 import { Order } from "../model/order";
@@ -33,6 +34,14 @@ export class OrderComponent implements OnInit {
 
     getOrders(){
         this.orderService.getAllOrders().subscribe(orders => this.orderList = orders);
+    }
+
+    isLoggedIn(){
+        let token = getString("token");
+        if(token != undefined && token != null)
+           return true;
+        else
+           return false;
     }
 
 

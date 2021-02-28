@@ -14,7 +14,7 @@ export class User {
     constructor(mobileNumber: string, password: string, firstName: string,  lastName: string,
         email: string, confirmPassword: string)
 
-    constructor(mobileNumber?: string,password?: string, firstName?: string, lastName?: string,
+    constructor(mobileNumber?: string, password?: string, firstName?: string, lastName?: string,
         email?: string, confirmPassword?: string) {
         this.firstName = firstName;
         this.lastName = lastName;

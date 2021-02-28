@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from '../config/environment';
 import { Observable, throwError, of } from 'rxjs';
 import { Address } from '../model/address';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AddressService {
-    //serviceUrl = environment.backendUrl + '/mart/user';
-    orderUrl = environment.backendUrl + '/order.json';
+    //addressUrl = environment.backendUrl + 'address.json';
+    addressUrl = '../../json/address.json';
 
     addressDetails: Address[] = [
         {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '',addressType: 'Home', isDefault:true ,userId:101},
@@ -17,10 +17,10 @@ export class AddressService {
     constructor(private http: HttpClient) { }
 
     getAllAddress() : Observable<Address[]> {
-        console.log(this.orderUrl)
-      //  return this.http.get<Order[]>(this.orderUrl)
-      // .pipe( catchError(this.handleError))
-        //.subscribe(response => console.log(response));
+        console.log(this.addressUrl)
+       // return this.http.get<Address[]>(this.addressUrl)
+        //.pipe( catchError(this.handleError));
+
         return of (this.addressDetails);
       }
 

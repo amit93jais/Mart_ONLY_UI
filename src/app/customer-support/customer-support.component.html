@@ -15,7 +15,16 @@
     <Label text="Customer - Support"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
-    <Label class="page__content-icon fas" text="&#xf002;"></Label>
-    <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
-</GridLayout>
+
+    <GridLayout rows="auto, auto, auto,*">
+        <Label row ="0" class="bold" text="Questions About an issue?"></Label>
+        <GridLayout row="1" columns="*,auto,20" class="boxed">
+        <Label col="0" text="Chat with customer Service"></Label>
+        <Label col="1" text=">"></Label>
+        </GridLayout>
+        <GridLayout row="2" columns="*,auto, 20" class="boxed">
+        <Label col="0" text="Call us"></Label>
+        <Label col="1" text=">"></Label>
+        </GridLayout>
+    </GridLayout>
+

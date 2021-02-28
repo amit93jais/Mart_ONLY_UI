@@ -27,12 +27,13 @@
     "@types/jest": "^26.0.5",
     "nativescript-angular": "~8.21.0",
     "nativescript-local-notifications": "^4.2.1",
+    "nativescript-social-share": "^1.6.0",
     "nativescript-toast": "^2.0.0",
     "nativescript-ui-dataform": "^6.1.0",
     "nativescript-ui-sidedrawer": "~8.0.0",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.4.0",
-    "tns-core-modules": "~6.5.0",
+    "tns-core-modules": "^6.5.25",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

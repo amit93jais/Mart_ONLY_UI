@@ -16,6 +16,11 @@
 
 </ActionBar>
 
+<!-- <stackLayout *ngIf="!isLoggedIn()">
+    <Button text="Login" class="login-btn"
+       [nsRouterLink]="['/auth', 'login']" pageTransition="sideDrawerTransition"></Button>
+</stackLayout> -->
+
 <StackLayout class="my-account">
 
     <Gridlayout height="200" rows="auto,auto,auto,*" class="my-profile">
@@ -46,7 +51,7 @@
     <StackLayout class="my-account-list">
         <Label  class="p-name" text="My Cards & Wallet"></Label>
         <StackLayout class="hr"></StackLayout>
-        <Label class="link" text="view details"></Label>
+        <Label class="link" [nsRouterLink]="['/wallet']" pageTransition="slide" text="view details"></Label>
     </StackLayout>
 
     <StackLayout class="my-account-list">

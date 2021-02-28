@@ -25,6 +25,11 @@
 
 
 <GridLayout rows="*">
+   <!--  <stackLayout *ngIf="!isLoggedIn()">
+        <Button text="Login" class="login-btn"
+           [nsRouterLink]="['/auth', 'login']" pageTransition="sideDrawerTransition"></Button>
+    </stackLayout> -->
+
     <ListView  [items]="orderList" class="o-item">
         <ng-template let-item="item" >
             <stackLayout (tap) = onNavigateOrderDetails(item) class="m-15">

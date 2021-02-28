@@ -15,7 +15,20 @@
     <Label text="My Wallet"></Label>
 </ActionBar>
 
-<GridLayout class="page__content">
-    <Label class="page__content-icon fas" text="&#xf002;"></Label>
-    <Label class="page__content-placeholder" text="<!-- Page content goes here -->"></Label>
+<GridLayout rows="auto, auto,*">
+    <GridLayout row="0" rows="auto, auto" class="boxed" >
+        <Label row="0" class="balance-text" text="Your Shopping Balance"></Label>
+        <GridLayout row="1" columns="auto,auto">
+        <Label col="0" text="&#xf156;" class="nt-icon fas rs-icon"></Label>
+        <Label col="1" class="green-text" text="{{balance}}"></Label>
+        </GridLayout>
+    </GridLayout>
+
+    <GridLayout row="1" rows="auto, auto" class="boxed" >
+        <Label row="0" class="balance-text" text="Your Rewards point"></Label>
+        <Label row="1" class="green-text" text="{{rewardpoint}}"></Label>
+    </GridLayout>
+
 </GridLayout>
+
+

@@ -4,3 +4,15 @@ tns plugin add nativescript-toast
 For radDataFor (validation)
 tns plugin add nativescript-ui-dataform
 import NativeScriptUIDataFormModule in respective module.ts
+
+
+Add plugin for Social share your mobile application
+tns plugin add nativescript-social-share
+
+
+Keyboard overlay while form fill --- its for ios.. not used tillnow
+tns plugin add nativescript-iqkeyboardmanager
+
+for android:
+Add this line in android-manifest.xml
+android:windowSoftInputMode="adjustPan"

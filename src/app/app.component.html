@@ -7,7 +7,7 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
         <GridLayout row="0" columns="20, auto, auto" class="nt-drawer__header">
             <Image *ngIf="isLoggedIn()" col="1" class="nt-drawer__header-image far t-36" src="font://&#xf2bd;"></Image>
-            <Label *ngIf="isLoggedIn()" col="2" class="nt-drawer__header-brand" text="Hello, Amit"></Label>
+            <Label *ngIf="isLoggedIn()" col="2" class="nt-drawer__header-brand" text="Hello, {{fName}}"></Label>
 
             <Button *ngIf="!isLoggedIn()" col="1" text="Signup" class="sign-btn"
             [nsRouterLink]="['/auth', 'signup']" pageTransition="sideDrawerTransition"
@@ -47,7 +47,7 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
 
                 <StackLayout class="hr"></StackLayout>
 
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/rate')" (tap)="onNavItemTap('/rate')">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="rateUs()">
                     <Label col="0" text="&#xf005;" class="nt-icon fas"></Label>
                     <Label col="1" text="Rate us" class="p-r-10"></Label>
                 </GridLayout>
@@ -55,9 +55,9 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="0" text="&#xf0f3;" class="nt-icon fas"></Label>
                     <Label col="1" text="Your Notifications" class="p-r-10"></Label>
                 </GridLayout>
-                <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/refer')" (tap)="onNavItemTap('/refer')">
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="shareWithFriend()">
                     <Label col="0" text="&#xf500;" class="nt-icon fas"></Label>
-                    <Label col="1" text="Refer to Friend" class="p-r-10"></Label>
+                    <Label col="1" text="Share with Friend" class="p-r-10"></Label>
                 </GridLayout>
                 <GridLayout columns="auto, *" class="nt-drawer__list-item" [class.-selected]="isComponentSelected('/support')" (tap)="onNavItemTap('/support')">
                     <Label col="0" text="&#xf1cd;" class="nt-icon fas"></Label>

@@ -5,7 +5,10 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { RateComponent } from "./rate.component";
 
 const routes: Routes = [
-    { path: "", component: RateComponent }
+    {
+    path: "",
+    component: RateComponent,
+     }
 ];
 
 @NgModule({

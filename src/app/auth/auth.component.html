@@ -28,13 +28,14 @@
             <FlexboxLayout>
             <StackLayout class="form">
                 <Image src="~/images/logo.png"></Image>
-                <RadDataForm [source]="loginUser" commitMode="OnLostFocus" validationMode="OnLostFocus">
+                <RadDataForm #loginModesDataForm [source]="loginUser" commitMode="OnLostFocus" validationMode="Immediate">
                     <TKEntityProperty tkDataFormProperty name="mobileNumber" displayName="Mobile Number" index="0">
                         <TKPropertyEditor tkEntityPropertyEditor type="Phone"></TKPropertyEditor>
                         <TKRegExValidator tkEntityPropertyValidators regEx="^[6-9][0-9]{9}$" errorMessage="Please enter valid mobile number."></TKRegExValidator>
                     </TKEntityProperty>
 
                     <TKEntityProperty tkDataFormProperty name="password" displayName="Password" index="1">
+                        <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
                     </TKEntityProperty>
                 </RadDataForm>
 
@@ -49,7 +50,6 @@
                 <Button text="Login" class="btn btn-primary" (tap)="login()"></Button>
             </StackLayout>
         </FlexboxLayout>
-
     </StackLayout>
 
 
@@ -59,8 +59,8 @@
             <ScrollView orientation="vertical">
             <StackLayout class="form">
                 <Image src="~/images/logo.png"></Image>
-                <RadDataForm #myValidationModesDataForm [source]="signupUser"
-                   [metadata]="signupMetadata" (propertyValidate)="onPropertyValidate($event)" >
+                <RadDataForm #signupModesDataForm [source]="signupUser"
+                   [metadata]="signupMetadata" (propertyValidate)="onPropertyValidate($event)">
                 </RadDataForm>
                <Button text="Signup" class="btn btn-primary" (tap)="signUp()"></Button>
             </StackLayout>

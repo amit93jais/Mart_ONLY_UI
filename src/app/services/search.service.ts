@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Order } from '../model/order';
 import { Address } from '../model/address';
 import { catchError, map } from 'rxjs/operators';
-import { environment } from '../config/environment';
 import { Observable, throwError, of } from 'rxjs';
 import { Product } from '../model/product';
 import { CartItem } from '../model/cart-item';

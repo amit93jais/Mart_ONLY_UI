@@ -4,7 +4,8 @@ import * as app from "tns-core-modules/application";
 
 @Component({
     selector: "Customer-Support",
-    templateUrl: "./customer-support.component.html"
+    templateUrl: "./customer-support.component.html",
+    styleUrls: ["./customer-support.component.css"]
 })
 export class CustomerSupportComponent implements OnInit {
 
