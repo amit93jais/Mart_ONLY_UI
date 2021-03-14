@@ -8,6 +8,7 @@ import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+//import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 //import { SliceBeforSpace } from "./services/slice.space.pipe";
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AppComponent } from "./app.component";
         NativeScriptHttpClientModule,
         NativeScriptFormsModule,
         NativeScriptRouterModule,
+        //NativeScriptUIListViewModule,
         //Added for Validators
         //tns plugin add nativescript-ui-dataform
         NativeScriptUIDataFormModule,

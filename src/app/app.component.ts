@@ -8,6 +8,7 @@ import {getString} from "tns-core-modules/application-settings";
 import * as SocialShare from "nativescript-social-share";
 import { Utils } from "@nativescript/core";
 
+
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html"

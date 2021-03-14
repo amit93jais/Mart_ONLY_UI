@@ -21,7 +21,7 @@
     </GridLayout>
 </ActionBar>
 
-<StackLayout width="100%" height="100%" >
+<!-- <StackLayout width="100%" height="100%" >
     <StackLayout orientation="horizontal" class="search-bar-container">
         <Button text="Category"></Button>
           <TextField hint="Search product here..." class="search-bar" [nsRouterLink]="['/search']"
@@ -49,4 +49,114 @@
         <Image  src="~/images/banner3.jpg" ></Image>
         <Image  src="~/images/banner4.jpg" ></Image>
 
-</StackLayout>
+</StackLayout> -->
+
+
+
+<ScrollView>
+    <StackLayout>
+
+      <StackLayout orientation="horizontal" class="search-bar-container">
+      <!--   <Button text="Category"></Button> -->
+          <TextField hint="Search product here..." class="search-bar" [nsRouterLink]="['/search']"
+          pageTransition="sideDrawerTransition"></TextField> <!--  clearHistory="true" -->
+    </StackLayout>
+
+    <StackLayout class="location" orientation="horizontal">
+      <Label class="nt-icon fas location-icon" text="&#x1f3c5;"></Label>
+      <Label  class="location-text text-right"
+           text='Delivered to {{address.fullName | SliceBeforSpace}} - {{address.city}} {{address.postalCode}}'></Label>
+      <Label class="nt-icon fas location-icon" text="&#x1f107;"
+                  [nsRouterLink]="['/address']" pageTransition="sideDrawerTransition"></Label>
+      </StackLayout>
+
+
+      <!--  -->
+
+<!--     <RadListView [items]="categories" [itemTemplateSelector]="templateSelector">
+    <ng-template tkListItemTemplate  let-item="item" class="scroll-menu">
+        <StackLayout orientation="horizontal" class="scroll-pane">
+            <Label class="m-10" [text]="item.name" class="nameLabel"></Label>
+        </StackLayout>
+    </ng-template>
+</RadListView> -->
+
+<ScrollView orientation="horizontal">
+  <StackLayout orientation="horizontal" class="scroll-menu">
+    <StackLayout>
+    <Label margin="10,10,0,10" class="nt-icon fas list-icon" text="&#xf022;"></Label>
+    <Label class="item-text" text="Categories"></Label>
+  </StackLayout>
+    <ng-template ngFor let-item="$implicit" [ngForOf]="categories" let-i="index">
+      <StackLayout class="scroll-pane">
+          <Image  [src]="item.imageurl" class="item-category-image" margin="10,40,0,0" ></Image>
+          <Label class="item-text" [text]="item.name"></Label>
+      </StackLayout>
+    </ng-template>
+  </StackLayout>
+</ScrollView>
+
+     <!--  <StackLayout android:visibility="collapsed">
+        <label
+          text="mytext"
+          textWrap="true"
+          margin="10,5,0,5"
+        ></label>
+      </StackLayout>
+      <StackLayout ios:visibility="collapsed">
+       <label
+          text="mytext"
+          textWrap="true"
+          margin="10,5,20,5"
+        ></label>
+      </StackLayout> -->
+
+      <GridLayout height="135" margin="5,0,0,0">
+        <ns:Carousel
+          #martCarousel
+          height="100%"
+          width="100%"
+          color="white"
+          (pageChanged)="pageChangedEvent($event)"
+          indicatorColor="#fff"
+          indicatorColorUnselected="#50ffffff"
+          ios:autoPagingInterval="3"
+          android:indicatorAnimation="swap"
+        >
+          <ns:CarouselItem
+            *ngFor="let item of items"
+            verticalAlignment="middle"
+            [backgroundColor]="item.color"
+            (tap)="pageTappedEvent($event)"
+          >
+            <GridLayout>
+              <image class="image" [src]="item.image" stretch="aspectFill"></image>
+              <!-- <label [text]="item.title" horizontalAlignment="center" backgroundColor="#50000000" height="30"></label> -->
+            </GridLayout>
+          </ns:CarouselItem>
+        </ns:Carousel>
+      </GridLayout>
+
+      <button
+        text="Toggle indicator"
+        (tap)="toggleIndicator()"
+        margin="10,10,0,10"
+        android:visibility="collapsed"
+      ></button>
+     <!--  <button text="Toggle indicator color" (tap)="toggleColor()" margin="10,10,0,10"></button>
+      <label [text]=" 'Selected page: ' + currentPage" textWrap="true" margin="10,0,0,0"></label>
+      <label [text]=" 'Tapped page: ' + tappedPage" textWrap="true" margin="0,0,0,0"></label> -->
+
+      <AbsoluteLayout width="1000" height="105" margin="5,0,0,0">
+        <Image left="0" top="0" src="~/images/r_banner1.jpg" ></Image>
+        <Image left="140" top="0" src="~/images/r_banner2.jpg" ></Image>
+        <Image left="280" top="0"  src="~/images/r_banner3.jpg" ></Image>
+    </AbsoluteLayout>
+
+    <Image  src="~/images/slide/banner1.jpg" margin="5,0,0,0" ></Image>
+    <Image  src="~/images/slide/banner2.jpg" margin="5,0,0,0"></Image>
+    <Image  src="~/images/slide/banner3.jpg" margin="5,0,0,0" ></Image>
+    <Image  src="~/images/slide/banner4.jpg" margin="5,0,0,0"></Image>
+
+    </StackLayout>
+  </ScrollView>

@@ -16,3 +16,7 @@ tns plugin add nativescript-iqkeyboardmanager
 for android:
 Add this line in android-manifest.xml
 android:windowSoftInputMode="adjustPan"
+
+Carousel:
+tns plugin add nativescript-carousel@6.1.1
+https://www.npmjs.com/package/nativescript-carousel

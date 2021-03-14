@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
     constructor(private router: Router, private userService: UserService,
         private page:Page, private _activatedRoute: ActivatedRoute) {
             this.loginUser = new User(null, null);
-            this.signupUser = new User(null,null,null,null,"user@mart.com",null);
+            this.signupUser = new User(null,null,null,null,"",null);
             this.signupMetadata = JSON.parse(JSON.stringify(signupMetadata));
 
             //this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentUser')));
