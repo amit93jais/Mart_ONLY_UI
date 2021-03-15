@@ -65,14 +65,17 @@ export class AuthComponent implements OnInit {
             .subscribe(
                 (user) => {this.router.navigate(["/home"]),
                     setString("token", user.token),
-                    setString("fName", user.firstName)},
+                    setString("fName", user.firstName),
+                    setNumber("mobileNumber", user.mobileNumber)
+                    console.log("auth componenet fname: "+user.fName);
+                },
                 (exception) => {
                     if (exception.error && exception.error.description) {
                         alert("Please Check your network connection");
                         console.log("while login des "+exception.error.description);
                     } else {
                         alert("Please Check your network connection");
-                        console.log("while login exeception "+exception)
+                        console.log("while login exeception "+exception);
                     }
                 }
             );
@@ -80,14 +83,6 @@ export class AuthComponent implements OnInit {
 
 
     signUp() {
-       //This is default email we are srtting to pass the validation if user is not providig email
-       //since we made email as optional field.
-        if(!this.signupUser.email){
-            console.log("Set email");
-           // The below value setting for  email is not workig so hardcodein whilae invokig user constructor
-           // this.myValidateDataFormComp["email"].nativeElement.value = "user@mart.com";
-        }
-
         this.signupDataFormComp.dataForm.validateAll()
         .then(result => {
         this.updateTextWithResult(result);

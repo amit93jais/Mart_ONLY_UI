@@ -4,6 +4,7 @@ import * as app from "tns-core-modules/application";
 import { User } from "../model/user";
 import { UserService } from "../services/user.service";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
+import { getString } from "tns-core-modules/application-settings";
 
 const profileMetadata = require('../services/profile-metadata.json');
 
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit {
     }
 
     getUserProfileDetails(){
-     this.userService.getProfileDetails().subscribe(userDetails => this.user = userDetails);
+     let mobileNumber = getString("mobileNumber");
+     this.userService.getProfileDetails(mobileNumber).subscribe(userDetails => this.user = userDetails);
     }
 }

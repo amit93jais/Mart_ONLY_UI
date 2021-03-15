@@ -5,17 +5,11 @@ import { catchError, map, tap } from "rxjs/operators";
 import { User } from "../model/user";
 import { environment } from "../config/environment";
 
-const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Accept': 'application/json',
-    })
-  };
 
-
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 export class UserService {
-    serviceUrl = environment.backendUrl+'/user';
 
     userDetails: User =   {id:1, firstName : 'Amit', lastName: 'Jaiswal', mobileNumber: '7411046385' ,email: 'user@mart.com', password: null, confirmPassword: null};
 
@@ -26,7 +20,7 @@ export class UserService {
         if (!mobileNumber) {
             return throwError("Please Enter mobile number.");
          }
-         return this.http.get<boolean>(this.serviceUrl+'/isMobileRegistered/'+mobileNumber)
+         return this.http.get<boolean>(environment.api.user.isMobileRegistered+'/'+mobileNumber)
          .pipe( catchError(this.handleErrors));
     }
 
@@ -35,15 +29,17 @@ export class UserService {
         if (!user.mobileNumber || !user.password) {
           return throwError("Please provide both an email address and password.");
        }
-        return this.http.post<any>(this.serviceUrl + '/create', user,
+        return this.http.post<any>(environment.api.user.create, user,
             { headers: this.getCommonHeaders() }
 
          ) .pipe( catchError(this.handleErrors));
     }
 
 
-    getProfileDetails(): Observable<User>{
-        return of(this.userDetails);
+    getProfileDetails(mobileNumber): Observable<User>{
+        //return of(this.userDetails);
+        return this.http.get<User>(environment.api.user.profile+'/'+mobileNumber)
+        .pipe( catchError(this.handleErrors));
       }
 
       getCommonHeaders() {
@@ -54,7 +50,7 @@ export class UserService {
       }
 
     login(user: User) {
-        return this.http.post<any>(this.serviceUrl + '/authenticate',
+        return this.http.post<any>(environment.api.user.login,
             JSON.stringify({
                 mobileNumber: user.mobileNumber,
                 password: user.password

@@ -67,8 +67,10 @@ export class AppComponent implements OnInit {
 
     isLoggedIn(){
         let token = getString("token");
+       //v console.log("token: "+token );
         if(token != undefined && token != null){
            this.fName = getString("fName");
+           console.log("fName: "+this.fName );
            return true;
         }
         else
