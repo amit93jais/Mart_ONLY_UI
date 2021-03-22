@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-import { ReferComponent } from "./refer.component";
+import { ReferComponent } from "./components/refer.component";
 
 const routes: Routes = [
     { path: "", component: ReferComponent }

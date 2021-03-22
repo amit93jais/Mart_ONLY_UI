@@ -1,0 +1,49 @@
+<ActionBar>
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+        <Label col="0" class="title" text="My Account"></Label>
+        <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+        [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+        <Label col="2" [text]="3" class="cart-item-no"
+        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+   </GridLayout>
+
+</ActionBar>
+
+<GridLayout rows="auto, auto, auto">
+
+    <Gridlayout row="0" height="200" class="my-profile">
+        <Image class="nt-drawer__header-image fas" src="font://&#xf2bd;"></Image>
+    </Gridlayout>
+
+
+    <StackLayout row="1" class="form">
+        <RadDataForm #myValidationModesDataForm [source]="user" [metadata]="profileMetadata">
+        </RadDataForm>
+
+      <!--   <TextField hint="First Name*" [(ngModel)]="user.firstName"
+            class="input input-border new-address"></TextField>
+        <TextField hint="Last Name*" [(ngModel)]="user.lastName"
+            class="input input-border new-address"></TextField>
+        <TextField hint="Mobile Number*" [(ngModel)]="user.mobileNumber"
+            class="input input-border new-address"></TextField>
+        <TextField hint="Email*" [(ngModel)]="user.email"
+            class="input input-border new-address"></TextField>
+     -->
+        <Button text="Save" class="btn btn-primary save-btn" (tap)="save()"></Button>
+
+        <StackLayout class="hr"></StackLayout>
+        // later can be changed if account login will be based on otp
+        <Label text="Change Password" [nsRouterLink]="['/account/password/change']"
+                 pageTransition="slide" class="change-password"></Label>
+        <StackLayout class="hr"></StackLayout>
+    </StackLayout>
+    <app-spinner rowSpan="1"></app-spinner>
+</GridLayout>
+

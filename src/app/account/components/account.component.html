@@ -1,0 +1,73 @@
+<ActionBar>
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+
+    <GridLayout columns="auto, *, auto">
+        <Label col="0" class="title" text="My Account"></Label>
+        <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
+        [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
+        <Label col="2" [text]="3" class="cart-item-no"
+        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+   </GridLayout>
+
+</ActionBar>
+
+<!-- <stackLayout *ngIf="!isLoggedIn()">
+    <Button text="Login" class="login-btn"
+       [nsRouterLink]="['/auth', 'login']" pageTransition="sideDrawerTransition"></Button>
+</stackLayout> -->
+
+<StackLayout class="my-account">
+
+    <Gridlayout height="200" rows="auto,auto,auto,*" class="my-profile">
+        <Image row="0" class="nt-drawer__header-image fas" src="font://&#xf2bd;"></Image>
+        <Label row="1" class="p-name" [text]="fName + ' ' + lName"></Label>
+        <Label row="2" [text]="'+91-'+mobileNumber"></Label>
+        <Label row="3" [text]="email"></Label>
+        <Label row="3" text="&#xf044;" [nsRouterLink]="['/account/profile']" pageTransition="slide"
+                 class="text-right nt-icon fas edit-icon"></Label>
+    </Gridlayout>
+
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="My Orders"></Label>
+        <StackLayout class="hr"></StackLayout>
+        <Label class="link" text="view all orders" [nsRouterLink]="['/order']" pageTransition="slide"
+        clearHistory="true" ></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="My Addresses"></Label>
+        <Label text="569, Sector 17-A, 122001"></Label>
+        <StackLayout class="hr"></StackLayout>
+        <Label class="link" [nsRouterLink]="['/address']" pageTransition="slide"
+           text="view all addresses"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="My Cards & Wallet"></Label>
+        <StackLayout class="hr"></StackLayout>
+        <Label class="link" [nsRouterLink]="['/wallet']" pageTransition="slide" text="view details"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="My Reviews"></Label>
+        <StackLayout class="hr"></StackLayout>
+        <Label class="link" text="view your reviews"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="Account Settings" [nsRouterLink]="['/account/profile']"
+        pageTransition="sideDrawerTransition"></Label>
+    </StackLayout>
+
+    <StackLayout class="my-account-list">
+        <Label  class="p-name" text="Logout" (tap)="logout()"></Label>
+    </StackLayout>
+
+</StackLayout>
+

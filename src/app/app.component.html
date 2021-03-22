@@ -3,17 +3,20 @@ RadSideDrawer is a UI component part of the Progress NativeScript UI set of comp
 Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
 https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawer/getting-started
 -->
+<!-- <GridLayout rows="auto, auto, auto"> -->
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
     <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
-        <GridLayout row="0" columns="20, auto, auto" class="nt-drawer__header">
-            <Image *ngIf="isLoggedIn()" col="1" class="nt-drawer__header-image far t-36" src="font://&#xf2bd;"></Image>
-            <Label *ngIf="isLoggedIn()" col="2" class="nt-drawer__header-brand" text="Hello, {{fName}}"></Label>
+        <GridLayout *ngIf="isUserLoggedIn()" row="0" columns="20, 50, auto, *" class="nt-drawer__header">
+            <Image  col="1" class="nt-drawer__header-image far" src="font://&#xf2bd;"></Image>
+            <Label  col="2" class="nt-drawer__header-brand" text="Hello, {{fName}}"></Label>
+        </GridLayout>
 
-            <Button *ngIf="!isLoggedIn()" col="1" text="Signup" class="sign-btn"
+        <GridLayout *ngIf="!isUserLoggedIn()" row="0" columns="20, auto, auto, *" class="nt-drawer__header">
+            <Button col="1" text="Signup" class="sign-btn"
             [nsRouterLink]="['/auth', 'signup']" pageTransition="sideDrawerTransition"
             [class.-selected]="isComponentSelected('/auth/signup')" (tap)="onNavItemTap('/auth/signup')"></Button>
 
-            <Button *ngIf="!isLoggedIn()" col="2" text="Login" class="sign-btn"
+            <Button  col="2" text="Login" class="sign-btn"
                [nsRouterLink]="['/auth', 'login']" pageTransition="sideDrawerTransition"
                [class.-selected]="isComponentSelected('/auth/login')" (tap)="onNavItemTap('/auth/login')"></Button>
         </GridLayout>
@@ -63,9 +66,19 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="0" text="&#xf1cd;" class="nt-icon fas"></Label>
                     <Label col="1" text="Customer Support" class="p-r-10"></Label>
                 </GridLayout>
+
+
+                <GridLayout columns="auto, *" class="nt-drawer__list-item" (tap)="logout()">
+                    <Label col="0" text="&#xf2f5;" class="nt-icon fas"></Label>
+                    <Label col="1" text="Logout" class="p-r-10"></Label>
+                </GridLayout>
             </StackLayout>
         </ScrollView>
     </GridLayout>
 
     <page-router-outlet tkMainContent></page-router-outlet>
 </RadSideDrawer>
+
+<!-- <ActivityIndicator rowSpan="1" [busy]="processing" color="blue"></ActivityIndicator> -->
+
+<!-- </GridLayout> -->

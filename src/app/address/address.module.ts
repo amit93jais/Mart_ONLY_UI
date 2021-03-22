@@ -2,10 +2,10 @@ import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { AddressRoutingModule } from "./address-routing.module";
-import { AddressComponent } from "./address.component";
-import { AddAddressComponent } from "./add-address.component";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
+import { AddAddressComponent } from "./components/add-address/add-address.component";
+import { AddressComponent } from "./components/address.component";
 
 @NgModule({
     imports: [

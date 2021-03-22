@@ -4,9 +4,11 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
-import {getString} from "tns-core-modules/application-settings";
+import * as Toast from "nativescript-toast";
 import * as SocialShare from "nativescript-social-share";
 import { Utils } from "@nativescript/core";
+import {getNumber, getString, remove} from "tns-core-modules/application-settings";
+import { StateService } from "./shared/services/state.service";
 
 
 @Component({
@@ -14,11 +16,14 @@ import { Utils } from "@nativescript/core";
     templateUrl: "app.component.html"
 })
 export class AppComponent implements OnInit {
+
     fName:string;
+    isLoggedIn: boolean = false;
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router, private routerExtensions: RouterExtensions,
+        private stateService: StateService) {
         // Use the component constructor to inject services.
     }
 
@@ -30,7 +35,7 @@ export class AppComponent implements OnInit {
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
 
-        this.isLoggedIn();
+        this.isUserLoggedIn();
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -65,15 +70,27 @@ export class AppComponent implements OnInit {
         sideDrawer.closeDrawer();
     }
 
-    isLoggedIn(){
+    isUserLoggedIn(){
         let token = getString("token");
-       //v console.log("token: "+token );
         if(token != undefined && token != null){
            this.fName = getString("fName");
-           console.log("fName: "+this.fName );
+           //console.log("fName: "+this.fName );
+           this.isLoggedIn = true;
            return true;
         }
-        else
+         else{
+          this.isLoggedIn = false;
            return false;
+         }
+    }
+
+    logout(){
+        remove("token");
+        remove("mobileNumber");
+        remove("firstName");
+        this.router.navigate(['/home']);
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.closeDrawer();
+        Toast.makeText("Successfully logged out").show();
     }
 }

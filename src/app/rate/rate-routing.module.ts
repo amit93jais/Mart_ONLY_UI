@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-import { RateComponent } from "./rate.component";
+import { RateComponent } from "./components/rate.component";
 
 const routes: Routes = [
     {

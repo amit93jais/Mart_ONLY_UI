@@ -1,8 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-import { CustomerSupportComponent } from "./customer-support.component";
+import { CustomerSupportComponent } from "./components/customer-support.component";
 
 const routes: Routes = [
     { path: "", component: CustomerSupportComponent }

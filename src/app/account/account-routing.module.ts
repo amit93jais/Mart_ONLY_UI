@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
-
-import { AccountComponent } from "./account.component";
-import { ProfileComponent } from "./profile.component";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
-import { PasswordChangeComponent } from "./password-change.component";
+import { AccountComponent } from "./components/account.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { PasswordChangeComponent } from "./components/password-change/password-change.component";
 
 const routes: Routes = [
     { path: "", component: AccountComponent },

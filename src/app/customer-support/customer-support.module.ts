@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { CustomerSupportComponent } from "./components/customer-support.component";
 
-import { CustomerSupportComponent } from "./customer-support.component";
 import { CustomerSupportRoutingModule } from "./customer-support-routing.module";
 
 @NgModule({
