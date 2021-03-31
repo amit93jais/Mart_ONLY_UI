@@ -38,7 +38,8 @@ export class AuthComponent implements OnInit {
     constructor(private router: Router, private authService: AuthService,
         private stateService: StateService,
         private page:Page, private _activatedRoute: ActivatedRoute) {
-            this.loginUser = new User(null, null);
+            //this.loginUser = new User(null, null);
+            this.loginUser = new User("7411046385", "qwerty");
             this.signupUser = new User(null,null,null,null,"",null);
             this.signupMetadata = JSON.parse(JSON.stringify(signupMetadata));
         }
@@ -61,12 +62,12 @@ export class AuthComponent implements OnInit {
         this.authService.login(this.loginUser)
             .subscribe(
                 (user) => {this.router.navigate(["/home"]),
-                    setString("token", user.token),
+                this.stateService.state.authToken = user.token;
+                this.stateService.login(user);
+                   /*  setString("token", user.token),
                     setString("firstName", user.firstName),
-                    setString("lastName", user.lastName),
-                    setString("email", user.email),
-                    setString("mobileNumber", user.mobileNumber)
-                },
+                    setString("mobileNumber", user.mobileNumber) */
+                }/* ,
                 (exception) => {
                     if (exception.error && exception.error.description) {
                         alert("Please Check your network connection");
@@ -75,7 +76,7 @@ export class AuthComponent implements OnInit {
                         alert("Please Check your network connection");
                         console.log("while login exeception "+exception);
                     }
-                }
+                } */
             );
     }
 
@@ -90,7 +91,7 @@ export class AuthComponent implements OnInit {
                 () => {
                     alert("Your account was successfully created."),
                     this.selectedTabIndex =0;
-                },
+                }/* ,
                 (exception) => {
                     if (exception.error && exception.error.description) {
                         alert("Please Check your network connection");
@@ -99,7 +100,7 @@ export class AuthComponent implements OnInit {
                         alert("Please Check your network connection");
                         console.log(exception);
                     }
-                }
+                } */
             );
         }
     });

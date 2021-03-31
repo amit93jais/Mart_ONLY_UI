@@ -7,6 +7,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'SliceBeforSpace'})
 export class SliceBeforSpace implements PipeTransform {
   transform(input: string): string {
+      if(input == null || input == undefined){
+          return input;
+      }
       let index = input.trim().indexOf( " " );
     return input.trim().slice(0, index);
   }

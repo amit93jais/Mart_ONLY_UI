@@ -4,15 +4,14 @@ import * as app from "tns-core-modules/application";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 
 import { Router } from "@angular/router";
-import { AddressService } from "~/app/shared/services/address.service";
-import { Address } from "~/app/shared/models/address";
+import { Address } from "../models/address";
+import { AddressService } from "../services/address.service";
 
 @Component({
     selector: "Address",
     moduleId: module.id,
     templateUrl: "./address.component.html",
-    styleUrls: ["./address.component.css"],
-    providers: [AddressService]
+    styleUrls: ["./address.component.css"]
 })
 export class AddressComponent implements OnInit {
     removeMsg = "Are you sure want to delete this address?\n\nPlease note: Deleting this "+
@@ -26,7 +25,7 @@ export class AddressComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getAllAddress();
+     this.getAllAddress();
     }
 
     onDrawerButtonTap(): void {
@@ -36,12 +35,21 @@ export class AddressComponent implements OnInit {
 
     getAllAddress(){
         this.addressService.getAllAddress().subscribe(addresses => this.addressList = addresses);
-        console.log("***Address : "+this.addressList[0].fullName);
     }
 
-    removeAddress(){
+    removeAddress(addressId){
         dialogs.confirm(this.removeMsg).then(result => {
-            console.log("Dialog result: " + result);
+            //if ok click
+            console.log("result: "+result);
+            if(result){
+                console.log("result1: "+result);
+              this.addressService.removeAddress(addressId)
+              .subscribe(
+                () => {
+                    this.getAllAddress();
+                }
+              );
+            }
         });
     }
 
@@ -54,13 +62,20 @@ export class AddressComponent implements OnInit {
     }
 
     changeDefaultAddress(id){
-      this.addressList.forEach((add) => {
-            if(add.id == id){
-            add.isDefault = true;
-            }else{
-                add.isDefault = false;
-            }
-        });
+        console.log("AddressId: "+id);
+       this.addressService.changeDefaultAddress(id)
+       .subscribe(
+        () => {
+            this.addressList.forEach((add) => {
+                if(add.id == id){
+                add.isDefault = true;
+                }else{
+                    add.isDefault = false;
+                }
+            });
+            //this.getAllAddress();
+        }
+      );
     }
 
 

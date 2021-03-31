@@ -22,15 +22,15 @@
             </TabStripItem>
         </TabStrip>
 
-      <TabContentItem>
+      <TabContentItem *ngIf="stateService.state.isLoggedIn">
         <StackLayout class="checkout-page">
             <StackLayout class="delivery-address">
-                <Label text='&#x1f3c5; Delivered To: {{address.addressType}}' class="nt-icon fas t-36"></Label>
-                <Label text='  {{address.fullName}}' class="t-16"></Label>
-                <Label text='  {{address.addressLine1}}' class="t-16"></Label>
-                <Label text='  {{address.addressLine2}}' class="t-16"></Label>
-                <Label text='  {{address.city}} - {{address.postalCode}}' class="t-16"></Label>
-                <Label text='  {{address.mobileNumber}}' class="t-16"></Label>
+                <Label text='&#x1f3c5; Delivered To: {{address?.addressType}}' class="nt-icon fas t-36"></Label>
+                <Label text='  {{address?.fullName}}' class="t-16"></Label>
+                <Label text='  {{address?.addressLine1}}' class="t-16"></Label>
+                <Label text='  {{address?.addressLine2}}' class="t-16"></Label>
+                <Label text='  {{address?.city}} - {{address.postalCode}}' class="t-16"></Label>
+                <Label text='  {{address?.mobileNumber}}' class="t-16"></Label>
                 <Button text="change" [nsRouterLink]="['/address']"
                     pageTransition="sideDrawerTransition"></Button>
             </StackLayout>

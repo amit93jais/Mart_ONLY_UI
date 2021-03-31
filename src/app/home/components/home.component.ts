@@ -6,12 +6,13 @@ import { interval } from 'rxjs';
 
 import { registerElement } from '@nativescript/angular';
 import { CarouselItem } from 'nativescript-carousel';
-import { AddressService } from "~/app/shared/services/address.service";
 import { ItemService } from "../services/item.service";
 import { CategoryService } from "../services/category.service";
 import { Category } from "../models/category";
 import { SlideItem } from "~/app/shared/models/slideItem";
-import { Address } from "~/app/shared/models/address";
+import { Address } from "~/app/address/models/address";
+import { AddressService } from "~/app/address/services/address.service";
+import { StateService } from "~/app/shared/services/state.service";
 
 registerElement('Carousel', () => Carousel);
 registerElement('CarouselItem', () => CarouselItem);
@@ -20,7 +21,7 @@ registerElement('CarouselItem', () => CarouselItem);
     selector: "Home",
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.css"],
-    providers: [AddressService, ItemService, CategoryService]
+    providers: [ItemService, CategoryService]
 })
 export class HomeComponent implements OnInit,AfterViewInit  {
     cartLength: number = 3;
@@ -35,12 +36,12 @@ export class HomeComponent implements OnInit,AfterViewInit  {
 
     carouselView: Carousel;
 
-    constructor(private addressService:AddressService,
+    constructor(private addressService:AddressService, public stateService: StateService,
         private itemService: ItemService, private categoryService: CategoryService) {
     }
 
     ngOnInit(): void {
-        this.getDefaultAddress();
+        //this.getDefaultAddress();
 
         this.items = this.itemService.getItems();
         this.categories = this.categoryService.getCategory();
@@ -55,9 +56,11 @@ export class HomeComponent implements OnInit,AfterViewInit  {
           sideDrawer.showDrawer();
       }
 
-      getDefaultAddress(){
-        this.addressService.getDefaultAddress().subscribe(add => this.address = add);
-      }
+      /* getDefaultAddress(){
+         if(this.stateService.state.isLoggedIn){
+           this.addressService.getDefaultAddress().subscribe(add => this.address = add);
+        }
+      } */
 
       ngAfterViewInit(): void {
         this.carouselView = this.carouselRef.nativeElement as Carousel;

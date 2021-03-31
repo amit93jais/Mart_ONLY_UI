@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Order } from '../models/order';
-import { Address } from '../models/address';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError, of } from 'rxjs';
 import { Payment } from '../models/payment';
 import { Product } from '../models/product';
 import { OItem } from '../models/o-Item';
 import { environment } from '~/environments/environment';
+import { Address } from '~/app/address/models/address';
 
 @Injectable()
 export class OrderService {
-    //serviceUrl = environment.backendUrl + '/mart/user';
+
     orderUrl = environment.backendUrl + '/order.json';
 
     address: Address =   {id : 1, fullName: 'Amit Jaiswal', addressLine1: '520, near bob bank',addressLine2: 'Sector 17 A', landMark: '', city: 'Gurugram', state: 'Haryana', postalCode:'122001', mobileNumber: '741104385',alternateMobileNumber: '',addressType:"Home", isDefault:false, userId:101};

@@ -8,6 +8,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { SpinnerComponent } from "./components/spinner/spinner.component";
+import { ErrorInterceptor } from "./interceptors/error.interceptor";
 import { RestInterceptor } from "./interceptors/rest.interceptor";
 import { SpinnerInterceptor } from "./interceptors/spinner.interceptor";
 
@@ -21,7 +22,7 @@ import { SpinnerInterceptor } from "./interceptors/spinner.interceptor";
         NativeScriptUIDataFormModule, //---This is used for RadDataForm
     ],
     declarations: [
-        SpinnerComponent
+        SpinnerComponent,
     ],
 
     exports:[
@@ -36,7 +37,8 @@ import { SpinnerInterceptor } from "./interceptors/spinner.interceptor";
 
     providers:[
         {provide: HTTP_INTERCEPTORS, useClass: RestInterceptor, multi:true},
-        {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi:true}
+        {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi:true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
     ],
     schemas: [
         NO_ERRORS_SCHEMA

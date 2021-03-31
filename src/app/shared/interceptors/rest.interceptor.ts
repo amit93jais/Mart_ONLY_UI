@@ -2,12 +2,12 @@ import {
     HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import {getString} from "tns-core-modules/application-settings";
+import { StateService } from "../services/state.service";
 
 @Injectable()
 export class RestInterceptor implements HttpInterceptor{
 
-    constructor(){}
+    constructor(private stateService: StateService){}
 
     intercept(
         req: HttpRequest<any>,
@@ -24,7 +24,7 @@ export class RestInterceptor implements HttpInterceptor{
                 }
             })
         }else{
-        const token = getString('token');
+       const token = this.stateService.getAuthToken();
         console.log("Token in interceptor: "+token);
         customRequest = req.clone({
             setHeaders: {

@@ -51,7 +51,7 @@
 
             <Label text="DELIVERY ADDRESS" textWrap="true" class="m-15 h2 text-left" class="summary-heading"></Label>
             <StackLayout class="data-container">
-            <Label text={{deliveryAddress.fullName}} class="o-solid"></Label>
+            <Label text={{deliveryAddress?.fullName}} class="o-solid"></Label>
             <Label text='{{deliveryAddress.addressLine1}}, {{deliveryAddress.addressLine2}}, {{deliveryAddress.city}} - {{deliveryAddress.postalCode}}'
             class="o-regular"> </Label>
             <Label text='&#xf095;  {{deliveryAddress.mobileNumber}}' class="nt-icon fas p-mobile"></Label>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, DoCheck, OnChanges, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
@@ -15,16 +15,20 @@ import { StateService } from "./shared/services/state.service";
     selector: "ns-app",
     templateUrl: "app.component.html"
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
 
-    fName:string;
-    isLoggedIn: boolean = false;
+    fName:string = "";
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
     constructor(private router: Router, private routerExtensions: RouterExtensions,
         private stateService: StateService) {
-        // Use the component constructor to inject services.
+
+    }
+
+    ngDoCheck(){
+        if(this.stateService.state.isLoggedIn)
+        this.fName = this.stateService.state.loggedInUser$.value.firstName;
     }
 
     ngOnInit(): void {
@@ -34,8 +38,6 @@ export class AppComponent implements OnInit {
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
-
-        this.isUserLoggedIn();
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -70,24 +72,11 @@ export class AppComponent implements OnInit {
         sideDrawer.closeDrawer();
     }
 
-    isUserLoggedIn(){
-        let token = getString("token");
-        if(token != undefined && token != null){
-           this.fName = getString("fName");
-           //console.log("fName: "+this.fName );
-           this.isLoggedIn = true;
-           return true;
-        }
-         else{
-          this.isLoggedIn = false;
-           return false;
-         }
-    }
-
     logout(){
-        remove("token");
+        this.stateService.logout();
+        /* remove("token");
         remove("mobileNumber");
-        remove("firstName");
+        remove("firstName"); */
         this.router.navigate(['/home']);
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.closeDrawer();

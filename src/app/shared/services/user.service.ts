@@ -11,16 +11,21 @@ import { environment } from "~/environments/environment";
 })
 export class UserService {
 
-    //userDetails: User =   {id:1, firstName : 'Amit', lastName: 'Jaiswal', mobileNumber: '7411046385' ,email: 'user@mart.com', password: null, confirmPassword: null};
-
     constructor(private http: HttpClient) {
     }
 
     getProfileDetails(mobileNumber): Observable<User>{
-        //return of(this.userDetails);
         return this.http.get<User>(environment.api.user.profile+'/'+mobileNumber)
         .pipe( catchError(this.handleErrors));
-      }
+    }
+
+    updateProfile(user): Observable<User>{
+        if (!user.mobileNumber) {
+            return throwError("Please provide mobile number.");
+         }
+          return this.http.put<any>(environment.api.user.update, user
+           ) .pipe( catchError(this.handleErrors));
+    }
 
     handleErrors(error: Response) {
         console.log(JSON.stringify(error));

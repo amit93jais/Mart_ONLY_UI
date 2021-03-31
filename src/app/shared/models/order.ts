@@ -1,6 +1,6 @@
-import { Address } from "./address";
 import { Payment } from "./payment";
 import { OItem } from "./o-Item";
+import { Address } from "~/app/address/models/address";
 
 export interface Order {
     id : number;

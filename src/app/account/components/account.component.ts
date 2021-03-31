@@ -10,6 +10,7 @@ import * as Toast from "nativescript-toast";
 import { UserService } from "~/app/shared/services/user.service";
 import { User } from "~/app/shared/models/user";
 import { RestInterceptor } from "~/app/shared/interceptors/rest.interceptor";
+import { StateService } from "~/app/shared/services/state.service";
 
 @Component({
     selector: "Account",
@@ -19,16 +20,15 @@ import { RestInterceptor } from "~/app/shared/interceptors/rest.interceptor";
 })
 export class AccountComponent implements OnInit {
 
-    fName =  getString("firstName");
-    lName =  getString("lastName");
-    mobileNumber =  getString("mobileNumber");
-    email =  getString("email");
+    user: User;
 
-    constructor(private _router: Router, private userService: UserService) {
+    constructor(private _router: Router, private stateService: StateService,
+        private userService: UserService) {
 
     }
 
     ngOnInit(): void {
+        this.user = this.stateService.state.loggedInUser$.value;
         //this.getUserProfileDetails();
     }
 
@@ -38,28 +38,17 @@ export class AccountComponent implements OnInit {
     }
 
     logout(){
+        this.stateService.logout();
         Toast.makeText("Successfully logged out").show();
-        remove("token");
-        remove("mobileNumber");
-        remove("firstName");
-        remove("lastName");
         this._router.navigate(['/home']);
     }
 
-    isLoggedIn(){
+    /* isLoggedIn(){
         let token = getString("token");
         if(token != undefined && token != null)
            return true;
         else
            return false;
-    }
-
-    /* getUserProfileDetails(){
-        let mobileNumber = getString("mobileNumber");
-        console.log("mobileNumber: " + mobileNumber);
-        if(mobileNumber != undefined && mobileNumber != null){
-        this.userService.getProfileDetails(mobileNumber).subscribe(userDetails => this.user = userDetails);
-        }
-       } */
+    } */
 
 }

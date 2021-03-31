@@ -62,24 +62,13 @@
           pageTransition="sideDrawerTransition"></TextField> <!--  clearHistory="true" -->
     </StackLayout>
 
-    <StackLayout class="location" orientation="horizontal">
+   <!--  <StackLayout *ngIf="stateService.state.isLoggedIn" class="location" orientation="horizontal">
       <Label class="nt-icon fas location-icon" text="&#x1f3c5;"></Label>
       <Label  class="location-text text-right"
-           text='Delivered to {{address.fullName | SliceBeforSpace}} - {{address.city}} {{address.postalCode}}'></Label>
+           text='Delivered to {{address?.fullName | SliceBeforSpace}} - {{address?.city}} {{address?.postalCode}}'></Label>
       <Label class="nt-icon fas location-icon" text="&#x1f107;"
                   [nsRouterLink]="['/address']" pageTransition="sideDrawerTransition"></Label>
-      </StackLayout>
-
-
-      <!--  -->
-
-<!--     <RadListView [items]="categories" [itemTemplateSelector]="templateSelector">
-    <ng-template tkListItemTemplate  let-item="item" class="scroll-menu">
-        <StackLayout orientation="horizontal" class="scroll-pane">
-            <Label class="m-10" [text]="item.name" class="nameLabel"></Label>
-        </StackLayout>
-    </ng-template>
-</RadListView> -->
+    </StackLayout> -->
 
 <ScrollView orientation="horizontal">
   <StackLayout orientation="horizontal" class="scroll-menu">

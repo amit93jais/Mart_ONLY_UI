@@ -2,8 +2,7 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const server = 'https://ef629cacdda4.ngrok.io'+'/mart';
-//const backend = './json/';
+const server = 'https://46fd37f55069.ngrok.io'+'/mart';
 export const environment = {
   production: false,
   backendUrl: server,
@@ -14,7 +13,14 @@ export const environment = {
        isMobileRegistered: `${server}/user/isMobileRegistered`,
        profile: `${server}/user/profile`,
        login: `${server}/user/authenticate`,
-      }
+      },
+      address:{
+        create: `${server}/address/create`,
+        update: `${server}/address/update`,
+        remove: `${server}/address/remove`,
+        all: `${server}/address/all`,
+        default: `${server}/address/default`,
+       }
   }
 };
 

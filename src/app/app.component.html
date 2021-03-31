@@ -6,12 +6,12 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
 <!-- <GridLayout rows="auto, auto, auto"> -->
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
     <GridLayout tkDrawerContent rows="auto, *" class="nt-drawer__content">
-        <GridLayout *ngIf="isUserLoggedIn()" row="0" columns="20, 50, auto, *" class="nt-drawer__header">
+        <GridLayout *ngIf="stateService.state.isLoggedIn" row="0" columns="20, 50, auto, *" class="nt-drawer__header">
             <Image  col="1" class="nt-drawer__header-image far" src="font://&#xf2bd;"></Image>
             <Label  col="2" class="nt-drawer__header-brand" text="Hello, {{fName}}"></Label>
         </GridLayout>
 
-        <GridLayout *ngIf="!isUserLoggedIn()" row="0" columns="20, auto, auto, *" class="nt-drawer__header">
+        <GridLayout *ngIf="!stateService.state.isLoggedIn" row="0" columns="20, auto, auto, *" class="nt-drawer__header">
             <Button col="1" text="Signup" class="sign-btn"
             [nsRouterLink]="['/auth', 'signup']" pageTransition="sideDrawerTransition"
             [class.-selected]="isComponentSelected('/auth/signup')" (tap)="onNavItemTap('/auth/signup')"></Button>
@@ -77,8 +77,6 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     </GridLayout>
 
     <page-router-outlet tkMainContent></page-router-outlet>
+
 </RadSideDrawer>
 
-<!-- <ActivityIndicator rowSpan="1" [busy]="processing" color="blue"></ActivityIndicator> -->
-
-<!-- </GridLayout> -->

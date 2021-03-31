@@ -16,7 +16,7 @@
 
 </ActionBar>
 
-<GridLayout rows="auto, auto, auto">
+<GridLayout rows="auto, auto, *">
 
     <Gridlayout row="0" height="200" class="my-profile">
         <Image class="nt-drawer__header-image fas" src="font://&#xf2bd;"></Image>
@@ -36,7 +36,7 @@
         <TextField hint="Email*" [(ngModel)]="user.email"
             class="input input-border new-address"></TextField>
      -->
-        <Button text="Save" class="btn btn-primary save-btn" (tap)="save()"></Button>
+        <Button text="Save" class="btn btn-primary save-btn" (tap)="updateProfile()"></Button>
 
         <StackLayout class="hr"></StackLayout>
         // later can be changed if account login will be based on otp
@@ -44,6 +44,6 @@
                  pageTransition="slide" class="change-password"></Label>
         <StackLayout class="hr"></StackLayout>
     </StackLayout>
-    <app-spinner rowSpan="1"></app-spinner>
+    <app-spinner rowSpan="4"></app-spinner>
 </GridLayout>
 

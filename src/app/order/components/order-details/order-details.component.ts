@@ -2,17 +2,17 @@ import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AddressService } from "~/app/shared/services/address.service";
 import { Order } from "~/app/shared/models/order";
-import { Address } from "~/app/shared/models/address";
+import { Address } from "~/app/address/models/address";
+import { AddressService } from "~/app/address/services/address.service";
+
 
 
 @Component({
     selector: "Order-Details",
     moduleId: module.id,
     templateUrl: "./order-details.component.html",
-    styleUrls: ["./order-details.component.css"],
-    providers: [AddressService]
+    styleUrls: ["./order-details.component.css"]
 })
 export class OrderDetailsComponent implements OnInit {
 
@@ -25,7 +25,8 @@ export class OrderDetailsComponent implements OnInit {
 
     //The Dynamic Component gets dynamic data. We use the history.state to access the product data. Alternatively, we can use the this.router.getCurrentNavigation().extras.state to achieve the same. Please remember getCurrentNavigation only works in the constructor. It will return null if used elsewhere.
 
-    constructor( private _activatedRoute: ActivatedRoute, private router: Router,  private addressService: AddressService ) {
+    constructor( private _activatedRoute: ActivatedRoute, private router: Router,
+        private addressService: AddressService ) {
         //The below code is used to get data from order component.
         //Note If orderId is not null means we are displaying product from previos order
         if (this.router.getCurrentNavigation().extras.state) {

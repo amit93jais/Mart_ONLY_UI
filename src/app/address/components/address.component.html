@@ -16,34 +16,36 @@
 
 </ActionBar>
 
-<StackLayout class="my-account">
+<GridLayout rows="auto, *" class="my-account">
 
-    <StackLayout class="add-address">
+    <StackLayout row="0" class="add-address">
         <Label class="link" text="+ Add a new address" [nsRouterLink]="['/address/addAddress']" pageTransition="slide"></Label>
     </StackLayout>
 
    <!--  <StackLayout class="hr"></StackLayout> -->
 
 
-    <ListView  [items]="addressList" class="o-item" separatorColor="blue">
+    <ListView  row="1" [items]="addressList" class="o-item" separatorColor="blue">
         <ng-template let-item="item">
-            <StackLayout height= "100" class="data-container">
+            <StackLayout height="100" class="data-container">
                 <StackLayout orientation="horizontal">
-                    <Label class="radio-btn" [class.selected]="item.isDefault" (tap)="changeDefaultAddress(item.id)"></Label>
-                    <Label text={{item.fullName}} class="o-solid"></Label>
+                    <Label class="radio-btn" [class.selected]="item?.isDefault" (tap)="changeDefaultAddress(item.id)"></Label>
+                    <Label text={{item?.fullName}} class="o-solid"></Label>
                 </StackLayout>
 
-                <Label text='{{item.addressLine1}}, {{item.addressLine2}}' class="o-regular"> </Label>
-                <Label text='{{item.city}} - {{item.postalCode}}' class="o-regular"> </Label>
-                <Label text={{item.mobileNumber}} class="p-mobile"></Label>
+                <Label text='{{item?.addressLine1}}, {{item?.addressLine2}}' class="o-regular"> </Label>
+                <Label text='{{item?.city}} - {{item?.postalCode}}' class="o-regular"> </Label>
+                <Label text={{item?.mobileNumber}} class="p-mobile"></Label>
 
                 <DockLayout  orientation="horizontal">
                     <Button dock="left" text="Edit" (tap)="editAddress(item)" class="edit-btn"></Button>
-                    <Button dock="right" text="Remove" (tap)="removeAddress()" class="remove-btn"></Button>
+                    <Button dock="right" text="Remove" (tap)="removeAddress(item.id)" class="remove-btn"></Button>
                 </DockLayout >
-             </StackLayout>
+            </StackLayout>
         </ng-template>
     </ListView >
 
-</StackLayout>
+<app-spinner rowSpan="2"></app-spinner>
+
+</GridLayout>
 

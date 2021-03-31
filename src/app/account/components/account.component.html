@@ -25,9 +25,9 @@
 
     <Gridlayout height="200" rows="auto,auto,auto,*" class="my-profile">
         <Image row="0" class="nt-drawer__header-image fas" src="font://&#xf2bd;"></Image>
-        <Label row="1" class="p-name" [text]="fName + ' ' + lName"></Label>
-        <Label row="2" [text]="'+91-'+mobileNumber"></Label>
-        <Label row="3" [text]="email"></Label>
+        <Label row="1" class="p-name" [text]="user?.firstName + ' ' + user?.lastName"></Label>
+        <Label row="2" [text]="'+91-'+user?.mobileNumber"></Label>
+        <Label row="3" [text]="user?.email"></Label>
         <Label row="3" text="&#xf044;" [nsRouterLink]="['/account/profile']" pageTransition="slide"
                  class="text-right nt-icon fas edit-icon"></Label>
     </Gridlayout>

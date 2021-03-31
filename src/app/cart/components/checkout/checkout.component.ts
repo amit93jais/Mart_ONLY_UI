@@ -2,26 +2,26 @@ import { Component, OnInit } from "@angular/core";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import * as app from "tns-core-modules/application";
 import { Router } from "@angular/router";
-import { AddressService } from "~/app/shared/services/address.service";
-import { Address } from "~/app/shared/models/address";
+import { Address } from "~/app/address/models/address";
+import { AddressService } from "~/app/address/services/address.service";
+import { StateService } from "~/app/shared/services/state.service";
 
 
 @Component({
     selector: "Cart",
     templateUrl: "./checkout.component.html",
     styleUrls: ["./../cart.component.css"],
-    providers: [AddressService]
 })
 export class CheckoutComponent implements OnInit {
 
     address: Address;
 
-    constructor(private addressService: AddressService) {
+    constructor(private addressService: AddressService, public stateService: StateService) {
         // Use the component constructor to inject providers.
     }
 
     ngOnInit(): void {
-        this.getDefaultAddress();
+       // this.getDefaultAddress();
     }
 
     onDrawerButtonTap(): void {
@@ -30,7 +30,9 @@ export class CheckoutComponent implements OnInit {
     }
 
     getDefaultAddress(){
+        if(this.stateService.state.isLoggedIn){
         this.addressService.getDefaultAddress().subscribe(add => this.address = add);
+        }
       }
 
     payment(){

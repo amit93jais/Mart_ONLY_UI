@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RestInterceptor } from "./shared/interceptors/rest.interceptor";
 import { SharedModule } from "./shared/shared.module";
 import { SpinnerInterceptor } from "./shared/interceptors/spinner.interceptor";
+import { ErrorInterceptor } from "./shared/interceptors/error.interceptor";
 //import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SpinnerInterceptor } from "./shared/interceptors/spinner.interceptor";
     ],
     providers:[
      {provide: HTTP_INTERCEPTORS, useClass: RestInterceptor, multi:true},
-     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi:true}
+     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi:true},
+     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}
     ],
     schemas: [
         NO_ERRORS_SCHEMA
