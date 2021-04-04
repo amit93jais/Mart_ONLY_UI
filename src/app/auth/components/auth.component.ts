@@ -12,6 +12,7 @@ import { User } from "~/app/shared/models/user";
 import { ActivityIndicator } from "ui/activity-indicator";
 import { StateService } from "~/app/shared/services/state.service";
 import { AuthService } from "../services/auth.service";
+import { CartService } from "~/app/cart/services/cart.service";
 
 const signupMetadata = require('../services/user-signup-metadata.json');
 
@@ -36,10 +37,10 @@ export class AuthComponent implements OnInit {
     @ViewChild('loginModesDataForm', { static: false }) loginDataFormComp: RadDataFormComponent;
 
     constructor(private router: Router, private authService: AuthService,
-        private stateService: StateService,
+        private stateService: StateService, private cartService: CartService,
         private page:Page, private _activatedRoute: ActivatedRoute) {
             //this.loginUser = new User(null, null);
-            this.loginUser = new User("7411046385", "qwerty");
+            this.loginUser = new User("7411046385", "");
             this.signupUser = new User(null,null,null,null,"",null);
             this.signupMetadata = JSON.parse(JSON.stringify(signupMetadata));
         }
@@ -64,6 +65,7 @@ export class AuthComponent implements OnInit {
                 (user) => {this.router.navigate(["/home"]),
                 this.stateService.state.authToken = user.token;
                 this.stateService.login(user);
+                this.cartLength();
                    /*  setString("token", user.token),
                     setString("firstName", user.firstName),
                     setString("mobileNumber", user.mobileNumber) */
@@ -78,6 +80,13 @@ export class AuthComponent implements OnInit {
                     }
                 } */
             );
+    }
+
+    cartLength(){
+        this.cartService.getCartLength()
+        .subscribe((len) => {
+            this.stateService.setCartLength(len);
+        })
     }
 
 

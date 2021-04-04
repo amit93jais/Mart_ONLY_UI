@@ -30,23 +30,24 @@
         </TabStrip>
 
       <TabContentItem>
-        <StackLayout>
-            <ListView [items]="cartList">
+        <GridLayout rows="auto, *, auto, auto">
+            <ListView row="1" [items]="cartList">
                 <ng-template let-item="item" >
                     <GridLayout rows="auto,*" columns="auto,25, *">
                         <Image row="0" col="0" [src]="item.product.imageUrl" class="p-image" ></Image>
 
                         <GridLayout col="2" rows="auto,auto,*" columns="auto,*,auto,auto,auto">
                             <Label row="0" col="0" [text]="item.product.name" class="o-regular"></Label>
-                            <Label row="1" col="0" [text]="item.product.weight"></Label>
+                            <Label row="1" col="0" [text]="item.product.quantity"></Label>
                             <Label row="2" col="0" text="Rs. {{item.product.price}}" class="o-solid"></Label>
                             <Button class="add-unit-btn" row="2" col="2" text=" - " (tap)="decreaseQty(item)"></Button>
-                            <Label  row="2" col="3" [text]="item.qtyInCart"></Label>
+                            <Label  row="2" col="3" [text]="item.quantity"></Label>
                             <Button class="add-unit-btn" row="2" col="4" text=" + " (tap)="increaseQty(item)"></Button>
                         </GridLayout>
                     </GridLayout>
                 </ng-template>
             </ListView >
-            </StackLayout>
+            <app-spinner rowSpan="2"></app-spinner>
+           </GridLayout>
         </TabContentItem>
     </BottomNavigation>

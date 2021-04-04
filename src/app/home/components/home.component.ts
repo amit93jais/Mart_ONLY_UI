@@ -24,7 +24,7 @@ registerElement('CarouselItem', () => CarouselItem);
     providers: [ItemService, CategoryService]
 })
 export class HomeComponent implements OnInit,AfterViewInit  {
-    cartLength: number = 3;
+    //cartLength: number = 3;
     address: Address;
 
     @ViewChild('martCarousel', { static: false }) carouselRef: ElementRef;

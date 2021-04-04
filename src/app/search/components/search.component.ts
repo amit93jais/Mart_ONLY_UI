@@ -4,28 +4,28 @@ import { SearchBar } from "tns-core-modules/ui/search-bar";
 import * as app from "tns-core-modules/application";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import { Router } from "@angular/router";
-import { SearchService } from "~/app/shared/services/search.service";
-import { ProductQty } from "~/app/shared/models/productQty";
-import { CartItem } from "~/app/shared/models/cart-item";
+import { SearchService } from "../services/search.service";
+import { CartLine } from "~/app/cart/models/cart-line";
+import { CartService } from "~/app/cart/services/cart.service";
+import { ProductCartQty } from "../models/product-cart-qty";
+import { StateService } from "~/app/shared/services/state.service";
 
 
 @Component({
     selector: "Search",
     templateUrl: "./search.component.html",
     styleUrls: ["./search.component.css"],
-    providers: [SearchService],
 })
 export class SearchComponent implements OnInit {
     searchPhrase: string;
-    serResult: ProductQty[] = [];
-    cartList: CartItem[] = [];
-    cartLength: number = 3;
+    serResult: ProductCartQty[] = [];
     addAllMsg = "Are you sure that you want to add all the products.";
 
     routeState: any;
     orderId: string;
 
-    constructor(private router: Router, private serService: SearchService) {
+    constructor(private router: Router, private serService: SearchService,
+        private cartService: CartService, public stateService: StateService) {
         //The below code is used to get data from order component.
         if (this.router.getCurrentNavigation().extras.state) {
             this.routeState = this.router.getCurrentNavigation().extras.state;
@@ -37,10 +37,6 @@ export class SearchComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.cartList.forEach( pq =>  {
-            this.cartLength = this.cartLength + pq.quantity;
-        })
-
         if(this.orderId != undefined && this.orderId != null){
             //this.isShopFromOrder = true;
             this.getProductByOrder(this.orderId);
@@ -62,7 +58,7 @@ export class SearchComponent implements OnInit {
 
     onTextChanged(args) {
         const searchBar = args.object as SearchBar;
-        console.log(`Input changed! New value: ${searchBar.text}`);
+        //console.log(`Input changed! New value: ${searchBar.text}`);
     }
 
     onClear(args) {
@@ -71,41 +67,64 @@ export class SearchComponent implements OnInit {
     }
 
     getProductBySearchKey(serachKey) {
-        this.serService
-            .getProductByKey(serachKey)
-            .subscribe((ser) => (this.serResult = ser));
-        console.log("serach by key****" + this.serResult.length);
+        this.serService.getProductByKey(serachKey)
+        .subscribe((ser) => (this.serResult = ser));
+        console.log("serach result item****" + this.serResult.length);
+    }
+
+    addToCart(productQty: ProductCartQty) {
+        this.cartService.addToCart(productQty.product.id, 1)
+        .subscribe((result) =>{
+            console.log("Add to cart "+result);
+            if(result){
+             productQty.qtyInCart++;
+            }
+        });
+
+    }
+
+    increaseQty( productQty: ProductCartQty) {
+        this.cartService.increaseQty(productQty.product.id)
+        .subscribe((result) =>{
+            console.log("Increased Quantity "+result);
+            if(result){
+             productQty.qtyInCart++;
+             this.stateService.state.cartLength = this.stateService.state.cartLength + 1;
+            }
+        });
+     }
+
+    decreaseQty(productQty: ProductCartQty) {
+        if(productQty.qtyInCart == 1){
+            this.removeProductFromCart(productQty);
+        }else{
+            this.cartService.decreaseQty(productQty.product.id)
+            .subscribe((result) =>{
+                console.log("decreased Quantity "+result);
+                if(result){
+                 productQty.qtyInCart--;
+                 this.stateService.state.cartLength = this.stateService.state.cartLength - 1;
+                }
+            });
+        }
+    }
+
+    removeProductFromCart(productQty){
+        this.cartService.removeProduct(productQty.product.id)
+        .subscribe((result) =>{
+            console.log("remove "+result);
+            if(result){
+                productQty.qtyInCart--;
+                this.stateService.state.cartLength = this.stateService.state.cartLength - 1;
+            }
+        });
+
     }
 
     refresh(){
         this.orderId = null;
         this.serResult = [];
         //window.location.reload();
-    }
-
-    addToCart(productQty: ProductQty) {
-        let cartItem :CartItem = {product:productQty.product, quantity:1, userId:101};
-        this.cartList.push(cartItem);
-        console.log("item in cart list****" + this.cartList.length);
-        this.cartLength++;
-        productQty.qtyInCart++;
-        //call service to update cart
-
-    }
-
-    increaseQty(productQty: ProductQty) {
-       productQty.qtyInCart++;
-        this.cartLength++;
-    }
-
-    decreaseQty(productQty: ProductQty) {
-        /* this.cartList.forEach((pq) => {
-            if(pq.product.id == product.id){
-            pq.qunatity--;
-            }
-        }); */
-        productQty.qtyInCart--;
-        this.cartLength--;
     }
 
     //This method will pass input as order id
@@ -129,16 +148,16 @@ export class SearchComponent implements OnInit {
         });
 
         this.serResult.forEach((pq) =>{
-            let cartItem :CartItem = new CartItem();
+            let cartItem :CartLine = new CartLine();
             cartItem.product = pq.product;
             cartItem.quantity = 2; //This is quntity in prev order...Call from service
 
-            this.cartList.push(cartItem);
-            this.cartLength++;
+           // this.cartList.push(cartItem);
+           // this.cartLength++;
             pq.qtyInCart++;
 
         });
-        console.log("item in cart list****" + this.cartList.length);
+       // console.log("item in cart list****" + this.cartList.length);
     }
 
 

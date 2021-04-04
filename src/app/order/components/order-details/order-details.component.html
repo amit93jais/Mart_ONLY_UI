@@ -23,9 +23,10 @@
         <Label col="0" class="title" text="My Orders"></Label>
         <Label col="1" text="&#xf002;" class="page__content-icon fas search-icon"
         [nsRouterLink]="['/search']" pageTransition="sideDrawerTransition"></Label>
-        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
-        <Label col="2" [text]="3" class="cart-item-no"
-        [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+        <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"
+         [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+         <Label col="2" *ngIf="stateService.state.isLoggedIn" [text]="stateService.state.cartLength"
+          class="cart-item-no"></Label>
    </GridLayout>
 
 </ActionBar>

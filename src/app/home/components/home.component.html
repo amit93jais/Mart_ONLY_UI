@@ -15,43 +15,12 @@
 
     <GridLayout columns="auto, *, auto">
          <Label class="title" col="0" text="Shoppers Mart"></Label>
-         <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"></Label>
-         <Label col="2" [text]="cartLength" class="cart-item-no"
-            [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+         <Label col="2" class="page__content-icon fas cart-icon" text="&#x1f217;"
+         [nsRouterLink]="['/cart']" pageTransition="sideDrawerTransition"></Label>
+         <Label col="2" *ngIf="stateService.state.isLoggedIn" [text]="stateService.state.cartLength"
+          class="cart-item-no"></Label>
     </GridLayout>
 </ActionBar>
-
-<!-- <StackLayout width="100%" height="100%" >
-    <StackLayout orientation="horizontal" class="search-bar-container">
-        <Button text="Category"></Button>
-          <TextField hint="Search product here..." class="search-bar" [nsRouterLink]="['/search']"
-          pageTransition="sideDrawerTransition" clearHistory="true"></TextField>
-    </StackLayout>
-
-    <StackLayout class="location" orientation="horizontal">
-    <Label class="nt-icon fas location-icon" text="&#x1f3c5;"></Label>
-    <Label  class="location-text text-right"
-         text='Delivered to {{address.fullName | SliceBeforSpace}} - {{address.city}} {{address.postalCode}}'></Label>
-    <Label class="nt-icon fas location-icon" text="&#x1f107;"
-                [nsRouterLink]="['/address']" pageTransition="sideDrawerTransition"></Label>
-    </StackLayout>
-
-    <Image  src="~/images/banner1.jpg" ></Image>
-    <Image  src="~/images/banner2.jpg" ></Image>
-
-
-    <AbsoluteLayout width="1000" height="105">
-        <Image left="0" top="0" src="~/images/r_banner1.jpg" ></Image>
-        <Image left="140" top="0" src="~/images/r_banner2.jpg" ></Image>
-        <Image left="280" top="0"  src="~/images/r_banner3.jpg" ></Image>
-    </AbsoluteLayout>
-
-        <Image  src="~/images/banner3.jpg" ></Image>
-        <Image  src="~/images/banner4.jpg" ></Image>
-
-</StackLayout> -->
-
-
 
 <ScrollView>
     <StackLayout>

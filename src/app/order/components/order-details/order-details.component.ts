@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Order } from "~/app/shared/models/order";
 import { Address } from "~/app/address/models/address";
 import { AddressService } from "~/app/address/services/address.service";
+import { StateService } from "~/app/shared/services/state.service";
 
 
 
@@ -26,7 +27,7 @@ export class OrderDetailsComponent implements OnInit {
     //The Dynamic Component gets dynamic data. We use the history.state to access the product data. Alternatively, we can use the this.router.getCurrentNavigation().extras.state to achieve the same. Please remember getCurrentNavigation only works in the constructor. It will return null if used elsewhere.
 
     constructor( private _activatedRoute: ActivatedRoute, private router: Router,
-        private addressService: AddressService ) {
+        public stateService: StateService, private addressService: AddressService ) {
         //The below code is used to get data from order component.
         //Note If orderId is not null means we are displaying product from previos order
         if (this.router.getCurrentNavigation().extras.state) {

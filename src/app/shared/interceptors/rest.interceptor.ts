@@ -25,7 +25,7 @@ export class RestInterceptor implements HttpInterceptor{
             })
         }else{
        const token = this.stateService.getAuthToken();
-        console.log("Token in interceptor: "+token);
+      //  console.log("Token in interceptor: "+token);
         customRequest = req.clone({
             setHeaders: {
                 Authorization: `Bearer ${token}`,

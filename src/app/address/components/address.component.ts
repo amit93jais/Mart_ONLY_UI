@@ -6,6 +6,7 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 import { Router } from "@angular/router";
 import { Address } from "../models/address";
 import { AddressService } from "../services/address.service";
+import { StateService } from "~/app/shared/services/state.service";
 
 @Component({
     selector: "Address",
@@ -20,8 +21,8 @@ export class AddressComponent implements OnInit {
     addressList : Address[]= [];
 
 
-    constructor(private addressService : AddressService, private _router: Router) {
-
+    constructor(private addressService : AddressService, private _router: Router,
+        public stateService: StateService) {
     }
 
     ngOnInit(): void {

@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { RadDataFormComponent } from "nativescript-ui-dataform/angular";
 import { Address } from "../../models/address";
 import { AddressService } from "../../services/address.service";
+import { StateService } from "~/app/shared/services/state.service";
 
 const addressMetadata = require('../../services/address-metadata.json');
 
@@ -23,7 +24,7 @@ export class AddAddressComponent implements OnInit {
     @ViewChild('myValidationModesDataForm', { static: false }) myValidateDataFormComp: RadDataFormComponent;
 
     constructor( private _activatedRoute: ActivatedRoute, private router: Router,
-        private addressService: AddressService ) {
+        private addressService: AddressService, public stateService: StateService ) {
 
        this.address = new Address(null, null, null, null, null, "Mirzapur", "231001", "Uttar Pradesh",
        null, null);

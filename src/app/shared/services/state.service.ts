@@ -13,12 +13,14 @@ export class StateService {
         isLoggedIn: boolean;
         authToken: string;
         loggedInUser$: BehaviorSubject<User>;
+        cartLength: number;
 
     } = {
         isLoading: false,
         isLoggedIn: false,
         authToken: null,
-        loggedInUser$: new BehaviorSubject(undefined)
+        loggedInUser$: new BehaviorSubject(undefined),
+        cartLength: 0
     };
 
     constructor(private router: Router){}
@@ -58,5 +60,12 @@ export class StateService {
         this.state.loggedInUser$.next(undefined);
     }
 
+    setCartLength(len: number){
+        this.state = { ...this.state, cartLength: len};
+    }
+
+    getCartLength(): number {
+       return this.state.cartLength;
+    }
 
 }

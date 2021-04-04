@@ -5,6 +5,7 @@ import * as app from "tns-core-modules/application";
 import { Router } from "@angular/router";
 import { OrderService } from "~/app/shared/services/order.service";
 import { Order } from "~/app/shared/models/order";
+import { StateService } from "~/app/shared/services/state.service";
 
 
 @Component({
@@ -19,7 +20,8 @@ export class OrderComponent implements OnInit {
     selectedOrder: Order;
     cartLength: number = 3;
 
-    constructor(private orderService : OrderService, private _router: Router) {
+    constructor(private orderService : OrderService, private _router: Router,
+        public stateService: StateService) {
     }
 
     ngOnInit(): void {
